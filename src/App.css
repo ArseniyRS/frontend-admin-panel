@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: Montserrat,sans-serif;
+  font-style: normal;
+  font-size: 16px;
+  font-weight: 600;
+}
+a{
+  text-decoration: none;
+}
+input,select,textarea{
+  color: #353535;
+}
+input::placeholder,
+select::placeholder,
+textarea::placeholder{
+  color: #929292;
+}
+.container{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+.page-content{
+  position: relative;
+  margin-left: 255px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.page-content__open-site{
+  color: #5AAEFF;
+  font-size: 14px;
+  line-height: 17px;
+  font-style: italic;
+  font-weight: 600;
+
+  align-self: flex-end;
+  margin: -5px 0 15px 0;
+}
+.page-content__title{
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 20px;
+
+  color: #353535;
+}
+.page-content__profile{
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+}
+.page-content__profile span{
+  color: #353535;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+  margin-right: 13px;
+}
+.page-content__profile img{
+  border: 1.5px solid #FFC822;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}

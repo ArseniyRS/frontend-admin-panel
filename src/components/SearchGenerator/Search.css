@@ -1,0 +1,27 @@
+.searchInput-list{
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.searchInput{
+    border: 1px solid #D3D3D3;
+    border-radius: 5px;
+    display: flex;
+    padding-right: 15px;
+    margin-right: 10px;
+
+}
+.searchInput input{
+    padding: 17px;
+    border: none;
+    font-weight: 500;
+    font-size: 14px;
+    margin: 1px;
+}
+.searchInput input::placeholder{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+
+    color: #929292;
+}

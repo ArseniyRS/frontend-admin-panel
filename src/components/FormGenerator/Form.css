@@ -1,0 +1,32 @@
+.createOrEditContainer{
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+}
+.createOrEditField{
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+.createOrEditField label{
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+
+    color: #555555;
+}
+.createOrEditField input,
+.createOrEditField select,
+.createOrEditField textarea
+{
+    max-width: 500px;
+    border: 1px solid #929292;
+    border-radius: 5px;
+    padding: 17px;
+    font-weight: 500;
+    font-size: 16px;
+    margin-top: 10px;
+}
+.createOrEditContainer__btns{
+    display: flex;
+}

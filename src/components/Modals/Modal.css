@@ -1,0 +1,83 @@
+.modal__wrapper{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background: rgba(0,0,0,.5);
+    backdrop-filter: blur(4px);
+}
+.modal__container{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+
+    width: 550px;
+    height: 280px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: #E5E5E5;
+    border-radius: 15px;
+
+    padding: 70px 100px;
+    z-index: 999;
+}
+.modal__container h2{
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 30px;
+    margin-bottom: 35px;
+}
+.modal__btns{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+.modal__btns-confirm,.modal__btns-cancel{
+    width: 120px;
+    height: 50px;
+
+    font-weight: 600;
+
+    line-height: 27px;
+    text-align: center;
+    font-size: 16px;
+    color: #ffffff;
+    background: #1E90FF;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.modal__btns-confirm{
+    margin-right: 15px;
+}
+
+.modal__btns-confirm:hover{
+    background: #007600;
+}
+.modal__btns-cancel:hover{
+    background: #CF0000;
+}
+
+.errorMessage{
+    display: flex;
+    align-items: center;
+    color: #FF0303;
+    font-size: 20px;
+    align-self: center;
+}
+.errorMessage img{
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+}

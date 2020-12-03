@@ -1,0 +1,54 @@
+.addBtn{
+    border: 1px solid #FFC822;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #FFC822;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    padding: 10px;
+    align-self: flex-end;
+
+}
+.addBtn img{
+    margin-right: 8px;
+}
+
+.deleteBtn {
+    position: relative;
+    cursor: pointer;
+    width: 34px;
+    height: 34px;
+    border: 1px solid #D3D3D3;
+    border-radius: 5px;
+    align-self: flex-end;
+}
+.deleteBtn img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 24px;
+    height: 24px;
+
+}
+.createOrEditBtn-cancel,
+.createOrEditBtn-submit
+{
+    cursor: pointer;
+    padding: 14px 24px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 14px;
+}
+.createOrEditBtn-cancel {
+    color: #353535;
+    border: 1px solid #1E90FF;
+}
+.createOrEditBtn-submit{
+
+    background: #1E90FF;
+    color: #FCFCFC;
+    margin-right: 10px;
+}
