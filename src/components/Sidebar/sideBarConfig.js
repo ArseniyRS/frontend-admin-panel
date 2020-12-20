@@ -7,12 +7,7 @@ export const sideBarConfig = [
 
     },
     {
-        to: '/123',
-        name: 'Открыть сайт',
-
-    },
-    {
-        to: 'ads',
+        to: '/advertisements',
         name: 'Существующие объявления',
 
     },
@@ -24,11 +19,6 @@ export const sideBarConfig = [
     {
         to: '/categories',
         name: 'Категории',
-
-    },
-    {
-        to: '/subcategories',
-        name: 'Подкатегории',
 
     },
     {

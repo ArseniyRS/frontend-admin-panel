@@ -4,7 +4,7 @@ import SearchInput from "./SearchInputs";
 
 
 const SearchForm = (props)=>{
-    const elements = props.inputConfig.map(item=>{
+    const elements = props.searchInputsConfig.map(item=>{
         return(
             <SearchInput
                 placeholder={item?.label}

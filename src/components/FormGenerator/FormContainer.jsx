@@ -8,7 +8,6 @@ const FormContainer = ({
                            updReq,
                            match,
                            isLoading,
-                           fileUploadKeys,
                            ...props})=>{
     useEffect(()=>{
         if(props.loadSelectorData) {
@@ -16,27 +15,27 @@ const FormContainer = ({
                 props.loadSelectorData[i]()
             }
         }
-        if(match.params?.id && props.getByIdFunc ) {
+        if(match.params?.id )  {
             props.getByIdFunc(match.params.id)
         }
     },[])
 
     const handleSubmit = async values=>{
-
+        console.log(values)
         if(match.params?.id){
             await updReq(match.params.id,values)
         }else {
-            await  createReq(values,fileUploadKeys)
+            await  createReq(values)
         }
     }
 
 
 
     return(
-       // (!isLoading && props.valueById ) || !match.params?.id
-         //   ?
+       (!isLoading && props.valueById ) || !match.params?.id
+           ?
             <Former handleSubmit={handleSubmit}  {...props}/>
-        //: <Preloader />
+           : <h2>Loading</h2>
 
     )
 }

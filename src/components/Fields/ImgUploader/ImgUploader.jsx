@@ -1,0 +1,161 @@
+import {Upload, Modal, Button,message} from 'antd';
+import React, {useEffect, useState} from "react";
+import './ImgUploader.css';
+import ImageUploading from 'react-images-uploading';
+import {deleteImageSVG} from "../../../assets";
+
+
+const ImgUploader = ({setFieldValue,name,value,placeholder,imageCount=1})=>{
+    const [file,setFile] = useState([])
+
+    useEffect(()=>{
+        setFieldValue(name,file)
+    },[file])
+
+    const onChange = (fileList) => {
+        setFile(fileList);
+    }
+
+    console.log(file)
+        return (
+
+            <ImageUploading
+                multiple
+                value={file}
+                onChange={onChange}
+                maxNumber={imageCount}
+                dataURLKey="data_url"
+            >
+                {({
+                      onImageUpload,
+                      onImageRemoveAll,
+                      onImageUpdate,
+                      onImageRemove,
+                      isDragging,
+                      dragProps,
+                  }) => (
+                              imageCount===1 ?
+                            <div className="upload__image-wrapper">
+                                {file.length===0 && <div
+                                    className={'upload__image-uploadBtn'}
+                                    style={isDragging ? {borderColor: '#009B00'} : undefined}
+                                    onClick={onImageUpload}
+                                    {...dragProps}
+                                >
+                                    Добавить фото пользователя
+                                </div>
+                                }
+                                {file.length!==0 &&
+                                <div className={'upload__image-container'}>
+
+                                    <div className="upload__image-item">
+                                        <img src={file[0]?.data_url} alt=""/>
+                                    </div>
+                                    <span className="update__image-item" onClick={() => onImageUpdate(0)}>Изменить фото профиля</span>
+                                        <span className="update__image-item" onClick={() => onImageRemove(0)}>Удалить фото профиля</span>
+                                </div>
+                                }
+                               {/*{files.length!==0 && <div className={'upload__image-remove-allBtn'} onClick={onImageRemoveAll}>Удалить все файлы</div> }*/}
+                            </div>
+                                  :
+
+                    <div className="upload__imageArray-wrapper">
+                        <div
+                            className={'upload__imageArray-uploadBtn-container'}
+                            style={isDragging ? { borderColor: '#009B00' } : undefined}
+                            onClick={onImageUpload}
+                            {...dragProps}
+                        >
+
+                            Нажмите или перетащите файл, чтобы загрузить
+                            <div  className={'upload__imageArray-uploadBtn'}>Добавить фото</div>
+                        </div>
+                        <div className={'upload__imageArray-container'}>
+                            {
+                                file.map((image, index) => (
+                                    <div key={index} className="upload__imageArray-item">
+                                        <img src={image['data_url'] ? image['data_url'] : image} alt=""  />
+                                        <div className="image-itemArray__btn-wrapper">
+
+                                            <span><img src={deleteImageSVG} onClick={() => onImageRemove(index)}/></span>
+                                        </div>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                        {file.length!==0 && <div className={'upload__image-remove-allBtn'} onClick={onImageRemoveAll}>Удалить все файлы</div> }
+                    </div>
+                )}
+            </ImageUploading>
+            // <ImageUploading
+            //      multiple
+            //     value={file}
+            //     onChange={onChange}
+            //     maxNumber={imageCount}
+            //     dataURLKey="data_url"
+            // >
+            //     {({
+            //           onImageUpload,
+            //           onImageRemoveAll,
+            //           onImageUpdate,
+            //           onImageRemove,
+            //           isDragging,
+            //           dragProps,
+            //       }) => (
+            //         //   imageCount===1 ?
+            //         <div className="upload__image-wrapper">
+            //             {file.length===0 && <div
+            //                 className={'upload__image-uploadBtn'}
+            //                 style={isDragging ? {borderColor: '#009B00'} : undefined}
+            //                 onClick={onImageUpload}
+            //                 {...dragProps}
+            //             >
+            //                 Добавить фото пользователя
+            //             </div>
+            //             }
+            //             {file.length!==0 &&
+            //             <div className={'upload__image-container'}>
+            //
+            //                 <div className="upload__image-item">
+            //                     <img src={file[0]?.data_url} alt=""/>
+            //                 </div>
+            //                 <span className="update__image-item" onClick={() => onImageUpdate(0)}>Изменить фото профиля</span>
+            //                     <span className="update__image-item" onClick={() => onImageRemove(0)}>Удалить фото профиля</span>
+            //             </div>
+            //             }
+            //            {/*{files.length!==0 && <div className={'upload__image-remove-allBtn'} onClick={onImageRemoveAll}>Удалить все файлы</div> }*/}
+            //         </div>
+            //         //
+            //         //       :
+            //         //       <div className="upload__image-wrapper">
+            //         //           <div
+            //         //               className={'upload__image-uploadBtn'}
+            //         //               style={isDragging ? { borderColor: '#009B00' } : undefined}
+            //         //               onClick={onImageUpload}
+            //         //               {...dragProps}
+            //         //           >
+            //         //               Нажмите или перетащите файл, чтобы загрузить
+            //         //           </div>
+            //         //           <div className={'upload__image-container'}>
+            //         //               {
+            //         //                   file.map((image, index) => (
+            //         //                       <div key={index} className="upload__image-item">
+            //         //                           <img src={image['data_url'] ? image['data_url'] : image} alt=""  />
+            //         //                           <div className="image-item__btn-wrapper">
+            //         //                               <span><img src={deleteImageSVG} onClick={() => onImageRemove(index)}/></span>
+            //         //                           </div>
+            //         //                       </div>
+            //         //                   ))
+            //         //               }
+            //         //           </div>
+            //         //           {file.length!==0 && <div className={'upload__image-remove-allBtn'} onClick={onImageRemoveAll}>Удалить все файлы</div> }
+            //         //       </div>
+            //     )}
+            //
+            //     )}
+            // </ImageUploading>
+
+        )
+}
+
+export default ImgUploader

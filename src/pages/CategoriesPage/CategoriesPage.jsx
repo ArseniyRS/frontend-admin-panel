@@ -4,18 +4,27 @@ import {connect} from "react-redux";
 import {CategoryColumns} from "../../configs/Categories/tableColumnsConfig";
 import PageRenderer from "../../components/PageRenderer/PageRendererContainer";
 import {categoryInputConfig} from "../../configs/Categories/formInputsConfig";
+import {
+    createCategory,
+    deleteCategory,
+    getCategory,
+    getCategoryById,
+    updateCategory
+} from "../../redux/reducers/categoryReducer";
 
 
 
 
 
-const CategoriesPage = ({categories,categoryById,getCategory,getCategoryById,createCategory,updateCategory,deleteCategory,clearCategory})=>{
+const CategoriesPage = ({categories=[],categoryById,getCategory,getCategoryById,createCategory,updateCategory,deleteCategory,clearCategory})=>{
+    console.log(categoryById)
+    console.log(categories)
     return(
         <PageRenderer
             pageUrl ={'categories'}
             pageTitle ={'Категории'}
 
-            //tableData={categories}
+            tableData={categories}
             tableColumnsConfig={CategoryColumns}
 
            // recordViewTitlesConfig={recordViewCategoryConfig}
@@ -23,27 +32,37 @@ const CategoriesPage = ({categories,categoryById,getCategory,getCategoryById,cre
             creatorTitle={'Добавление категории'}
             updaterTitle={'Изменение категории'}
            formInputsConfig={categoryInputConfig}
-            optionsForSelectorData={{
-                category: categories ? [...categories] : []
-            }}
             creatorInitialFormValues={{
                 name: '',
-                parentCategoryId: []}}
+                subcategories: []}}
             updaterInitialFormValues={{
-                name: '',
-                parentCategoryId: [],
+                name: categoryById?.name,
+                subcategories: categoryById?.subcategories,
             }}
-           //  getDataFunc={getCategory}
-           //  valueById={categoryById}
-           //  getByIdFunc={getCategoryById}
-           //  createFunc={createCategory}
-           //  updateFunc={updateCategory}
+            getDataFunc={getCategory}
+            valueById={categoryById}
+            getByIdFunc={getCategoryById}
+            createFunc={createCategory}
+            updateFunc={updateCategory}
            //  clearFunc={clearCategory}
-           //  deleteFunc={deleteCategory}
+            deleteFunc={deleteCategory}
 
         />
     )
 }
-
-
-export  default  CategoriesPage
+const mapStateToProps = state=>{
+    return{
+        categories: state.category.categories,
+        categoryById: state.category.categoryById
+    }
+}
+export  default connect(mapStateToProps,
+    {
+        getCategory,
+        getCategoryById,
+        createCategory,
+        updateCategory,
+        deleteCategory,
+        //clearCategory
+    }
+)(CategoriesPage)

@@ -1,12 +1,25 @@
 .createOrEditContainer{
-    margin-top: 80px;
+
     display: flex;
     flex-direction: column;
+    width: 1300px;
+}
+.createOrEditContainer__title{
+    margin-bottom: 80px;
+}
+.createOrEditContainer__fields{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: wrap;
 }
 .createOrEditField{
     display: flex;
     flex-direction: column;
-    margin: 15px 0;
+    justify-content: flex-start;
+    margin-top: 15px;
+    position: relative;
+    width: 500px;
 }
 .createOrEditField label{
     font-weight: 500;
@@ -29,4 +42,45 @@
 }
 .createOrEditContainer__btns{
     display: flex;
+    margin-top: 25px;
 }
+.required_field{
+    color: #EB4134;
+}
+.formTitle{
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 24px;
+
+    margin: 45px 0 25px 0;
+    color: #000000;
+}
+
+.radio_group_field{
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+.radio_group_field label{
+    margin-right: 55px;
+
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+
+    color: #3F3F3F;
+}
+.radio_group_field label input{
+    margin-right: 10px;
+}
+.formErrorMessage{
+    position: absolute;
+    right: 0;
+    bottom: -18px;
+    font-size: 11px;
+    font-weight: lighter;
+
+    color: #EB4134;
+
+}
+

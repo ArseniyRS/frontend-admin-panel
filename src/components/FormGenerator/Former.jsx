@@ -1,10 +1,6 @@
 import React from 'react'
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
-import {Link} from "react-router-dom";
-// //import {backSVG} from "../../assets/icons";
-// import EditBtn from "../Btns/EditBtn";
-// import CancelBtn from "../Btns/CancelBtn";
 import FormInput from "./FormInput";
 import {validationGenerator} from "./validationGenerator";
 import EditBtn from "../Btns/EditBtn";
@@ -21,10 +17,18 @@ const Former = (props)=>{
                 name={item}
                 placeholder={props.inputConfig[index]?.placeholder}
                 label={props.inputConfig[index]?.label}
+                labelObject={props.inputConfig[index]?.labelObject}
+                radioLabel={props.inputConfig[index]?.radioLabel}
                 type={props.inputConfig[index]?.type}
+                imageCount={props.inputConfig[index]?.imageCount}
+                additionally={ props.inputConfig[index]?.additionally}
+                iconInput={ props.inputConfig[index]?.iconInput}
+                required={props.inputConfig[index]?.required}
                 selectInputData={props.inputConfig[index]?.selectInputData}
                 options={props.optionsForSelector}
                 selectorProperty={props.inputConfig[index]?.selectorProperty}
+                styles={props.inputConfig[index]?.styles}
+
             />
         )
     })
@@ -45,10 +49,12 @@ const Former = (props)=>{
                 }}
             >
                 {({handleSubmit,errors,values}) =>{
-
                     return (
                         <Form>
-                            {inputs}
+                            <div className={"createOrEditContainer__fields"}>
+                                {inputs}
+                            </div>
+
                             <div className={"createOrEditContainer__btns"}>
                                 <EditBtn
                                     values = {values}

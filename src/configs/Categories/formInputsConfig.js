@@ -7,4 +7,8 @@ export const categoryInputConfig = [{
         label: "Подкатегории",
         placeholder: "Добавить подкатегорию",
         type: 'array',
-    },]
+        dataType: 'array',
+        labelObject: {name: ''}
+    },
+
+]

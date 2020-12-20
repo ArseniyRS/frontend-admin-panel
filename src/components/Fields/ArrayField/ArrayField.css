@@ -4,7 +4,9 @@
 }
 .arrayField__item{
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    position: relative;
+    margin: 10px 0;
 }
 .arrayField__addItemBtn{
     border: 1px solid #FFC822;
@@ -20,10 +22,17 @@
     width: 530px;
 }
 .arrayField__removeItemBtn{
-    margin-left: 10px;
-    margin-top: 10px;
+    position: absolute;
+    right: -30px;
+    top: 65%;
+}
+.arrayField__plusItemBtn{
+    position: absolute;
+    right: -32px;
+    top: 30%;
 }
 .arrayField__addItemBtn,
-.arrayField__removeItemBtn{
+.arrayField__removeItemBtn,
+.arrayField__plusItemBtn{
     cursor: pointer;
 }

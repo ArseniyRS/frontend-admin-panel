@@ -1,0 +1,21 @@
+.schedule-item{
+    display: flex;
+    align-items: center;
+    width: 440px;
+    justify-content: space-between;
+}
+.schedule-item span{
+    margin: 10px 10px 0 12px;
+    width: 120px;
+
+}
+.timeFrom input, .timeTo input{
+    width: 53px;
+    height: 35px;
+    border: none!important;
+    background: #FCFCFC;
+
+    box-shadow: inset 0px 2px 4px rgba(53, 53, 53, 0.2);
+    border-radius: 5px;
+    margin: 0 5px;
+}

@@ -1,0 +1,18 @@
+.fieldWithIcon{
+    position: relative;
+    max-width: 500px;
+    border: 1px solid #929292;
+    border-radius: 5px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.fieldWithIcon img{
+    margin-left: 16px;
+}
+.fieldWithIcon input{
+    width: 100%;
+    border: none!important;
+    margin: 0!important;
+}

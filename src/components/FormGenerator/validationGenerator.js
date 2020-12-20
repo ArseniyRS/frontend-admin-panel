@@ -8,6 +8,9 @@ export const validationGenerator = (key, config)=>{
                 case 'number':
                     schema[item] = Yup.number();
                     break;
+                case 'array':
+                    schema[item] = Yup.array();
+                    break;
                 default:
                     schema[item] = Yup.string()
             }

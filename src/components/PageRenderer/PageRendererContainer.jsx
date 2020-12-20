@@ -27,6 +27,7 @@ const PageRenderer = ({
     creatorTitle,
     updaterTitle,
     formInputsConfig,
+    searchInputsConfig,
     loadSelectorData,
     optionsForSelectorData,
     creatorInitialFormValues,
@@ -47,12 +48,14 @@ const PageRenderer = ({
     adding=true,
     editing=true,
     deleting=true,
+
+    username
                       })=>{
     //const clickOnRecord=(id)=>history.push(`/${pageUrl}/view/${id}`)
     return(
         <>
-            <Link className = 'page-content__open-site'>Открыть сайт</Link>
-            <div className = 'page-content__profile'><span>Айдай Асанова</span> <img src={avatarPNG} alt=""/></div>
+            <a href="http://46.101.99.48/"  target={'_blank'} className = 'page-content__open-site'>Открыть сайт</a>
+            <div className = 'page-content__profile'><span>{username.name}</span> <img  alt=""/></div>
             <Switch>
                         <Route exact path={`/${pageUrl}`}>
 
@@ -60,9 +63,11 @@ const PageRenderer = ({
                             <AddBtn
                                 urlToCreate={`/${pageUrl}/${pageUrl}-creator`}
                             />
+                            {searchInputsConfig &&
                             <SearchContainer
-                                inputConfig={formInputsConfig}
+                                searchInputsConfig={searchInputsConfig}
                             />
+                            }
                             <TableContainer
                                 isLoading={isLoading}
                                 getDataFunc={getDataFunc}
@@ -73,7 +78,10 @@ const PageRenderer = ({
                                 //  handlerClick={clickOnRecord}
                                 deleting={deleting}
                             />
-                            <DeleteBtn />
+                            {deleting &&
+                            <DeleteBtn
+                                deleteFunc = {deleteFunc}
+                            />}
                         </Route>
                         {adding &&
                         <Route exact path={`/${pageUrl}/${pageUrl}-creator`}>
@@ -94,8 +102,8 @@ const PageRenderer = ({
                         <Route exact path={`/${pageUrl}/${pageUrl}-updater/:id`}>
                             <FormContainer
                                 loadSelectorData={loadSelectorData}
-                                //getByIdFunc={getByIdFunc}
-                                //valueById={valueById}
+                                getByIdFunc={getByIdFunc}
+                                valueById={valueById}
                                 urlToTable={`/${pageUrl}`}
                                 initialVals={updaterInitialFormValues}
                                 updReq={updateFunc}
@@ -126,12 +134,13 @@ const PageRenderer = ({
     )
 }
 
-// const mapStateToProps = state=>{
-//     return{
-//         isLoading : state.main.isFetchLoader
-//     }
-// }
+const mapStateToProps = state=>{
+    return{
+        isLoading : state.auth.isFetchLoader,
+        username: state.auth.username
+    }
+}
 export default
-    //connect(mapStateToProps)(withRouter(
+    connect(mapStateToProps)(withRouter(
     PageRenderer
-    //))
+    ))
