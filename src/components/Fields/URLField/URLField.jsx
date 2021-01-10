@@ -1,11 +1,18 @@
 import React from 'react'
 import {Field} from "formik";
 import {urlSVG} from "../../../assets";
+import {Link} from "react-router-dom";
+import './URLField.css'
 
 
 const URLField = props=>{
     return(
-        <div className={'urlField'}><Field name={props.name} placeholder={props.placeholder}/><img src={urlSVG} alt=""/></div>
+        <div className={'urlField'}>
+            <input name={props.name} placeholder={props.placeholder}/>
+            <Link to={props.value} target="_blank">
+                <img src={urlSVG} alt=""/>
+            </Link>
+        </div>
     )
 }
 

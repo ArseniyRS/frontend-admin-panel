@@ -17,8 +17,6 @@ import {
 
 
 const CategoriesPage = ({categories=[],categoryById,getCategory,getCategoryById,createCategory,updateCategory,deleteCategory,clearCategory})=>{
-    console.log(categoryById)
-    console.log(categories)
     return(
         <PageRenderer
             pageUrl ={'categories'}

@@ -6,6 +6,9 @@ import {tableReducer} from "./tableReducer";
 import {specialistReducer} from "./specialistReducer";
 import {mainReducer} from "./mainReducer";
 import {userReducer} from "./userReducer";
+import {ruleReducer} from "./ruleReducer";
+import {qasReducer} from "./qasReducer";
+import {aboutReducer} from "./aboutReducer";
 
 
 
@@ -18,6 +21,9 @@ export const rootReducer = combineReducers({
     specialist: specialistReducer,
     main: mainReducer,
     user: userReducer,
+    rules: ruleReducer,
+    qas: qasReducer,
+    about: aboutReducer
 })
 
 

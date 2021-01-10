@@ -4,6 +4,11 @@
     flex-direction: column;
     width: 1300px;
 }
+.createOrEditContainer__block{
+    width: 790px;
+    display: flex;
+    justify-content: space-between;
+}
 .createOrEditContainer__title{
     margin-bottom: 80px;
 }
@@ -20,6 +25,7 @@
     margin-top: 15px;
     position: relative;
     width: 500px;
+    margin-right: 15px;
 }
 .createOrEditField label{
     font-weight: 500;
@@ -28,11 +34,18 @@
 
     color: #555555;
 }
+.createOrEditField textarea{
+    padding: 30px!important;
+    font-family: Montserrat,sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+}
 .createOrEditField input,
 .createOrEditField select,
 .createOrEditField textarea
 {
-    max-width: 500px;
+width: 100%;
     border: 1px solid #929292;
     border-radius: 5px;
     padding: 17px;
@@ -56,22 +69,31 @@
     color: #000000;
 }
 
+.radio_group_field-container{
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    width: 500px;
+}
 .radio_group_field{
     display: flex;
     align-items: center;
-    margin: 20px 0;
+    margin-right: 55px;
+    min-width: 150px;
 }
 .radio_group_field label{
-    margin-right: 55px;
 
     font-weight: 600;
     font-size: 16px;
     line-height: 20px;
 
     color: #3F3F3F;
+
+    margin-top: 12px;
 }
-.radio_group_field label input{
+.radio_group_field input{
     margin-right: 10px;
+    width: auto!important;
 }
 .formErrorMessage{
     position: absolute;

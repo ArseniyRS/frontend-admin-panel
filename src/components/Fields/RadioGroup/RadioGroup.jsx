@@ -8,16 +8,16 @@ const RadioGroup = props=>{
 
     const elements = props.label.map((item,index)=>{
         return(
-            <label key={index}>
+            <div className={'radio_group_field'}>
                 <Field type="radio" name={props.name} value={`${index}`} />
-                {props.label[index]}
-            </label>
+            <label key={index} htmlFor={props.name}> {props.label[index]}</label>
+            </div>
         )
         })
 
 
     return(
-        <div className={'radio_group_field'}>
+        <div className={'radio_group_field-container'}>
             {elements}
             </div>
     )

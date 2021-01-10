@@ -11,6 +11,9 @@ export const validationGenerator = (key, config)=>{
                 case 'array':
                     schema[item] = Yup.array();
                     break;
+                case 'obj':
+                    schema[item] = Yup.object();
+                    break;
                 default:
                     schema[item] = Yup.string()
             }

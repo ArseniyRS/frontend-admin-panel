@@ -1,0 +1,43 @@
+.textEditor{
+    margin-top: 10px;
+}
+.textEditor .ql-container {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+}
+
+/* Snow Theme */
+.textEditor .ql-snow.ql-toolbar {
+    display: block;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background: #F3F3F3;
+}
+    /*.ql-snow.ql-toolbar button svg path,*/
+/*.ql-snow .ql-toolbar button svg path,*/
+/*.ql-snow .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) svg path,*/
+/*.ql-snow .ql-picker*/
+/*{*/
+/*    color: #ffffff!important;*/
+/*    fill: #ffffff!important;*/
+/*}*/
+
+/*.ql-snow .ql-stroke{*/
+/*    fill: #ffffff!important;*/
+
+/*}*/
+/*.ql-snow .ql-stroke svg rect{*/
+
+/*}*/
+.ql-picker-options{
+    color: #353535;
+}
+.textEditor .ql-editor {
+    min-height: 18em;
+}
+
+.themeSwitcher {
+    margin-top: 0.5em;
+    font-size: small;
+}

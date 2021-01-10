@@ -1,30 +1,22 @@
 import React, {useEffect} from 'react'
 import {connect} from "react-redux";
-
-import {CategoryColumns} from "../../configs/Categories/tableColumnsConfig";
 import PageRenderer from "../../components/PageRenderer/PageRendererContainer";
-import {categoryInputConfig} from "../../configs/Categories/formInputsConfig";
 import {userInputConfig} from "../../configs/Users/formInputsConfig";
 import {UserColumns} from "../../configs/Users/tableColumnsConfig";
-import {userSearchInputConfig} from "../../configs/Users/searchInputsConfig";
-import {deleteUser, getUserById, getUsers, updateUser} from "../../redux/reducers/userReducer";
+import {createUser, deleteUser, getUserById, getUsers, updateUser} from "../../redux/reducers/userReducer";
 import {getCities} from "../../redux/reducers/mainReducer";
 
 
 
 
 
-const UsersPage = ({users,cities,userById,getCities,getUsers,getUserById,updateUser,deleteUser})=>{
-    console.log(userById)
+const UsersPage = ({users,cities,userById,createUser,getCities,getUsers,getUserById,updateUser,deleteUser})=>{
     return(
         <PageRenderer
             pageUrl ={'users'}
             pageTitle ={'Пользователи'}
-
             tableData={users}
             tableColumnsConfig={UserColumns}
-
-
             creatorTitle={'Добавление пользователя'}
             updaterTitle={'Изменение пользователя'}
             formInputsConfig={userInputConfig}
@@ -33,6 +25,7 @@ const UsersPage = ({users,cities,userById,getCities,getUsers,getUserById,updateU
             }}
             loadSelectorData={[getCities]}
             creatorInitialFormValues={{
+                type: '',
                 avatarPath: '',
                 name: "",
                 surname: "",
@@ -58,14 +51,12 @@ const UsersPage = ({users,cities,userById,getCities,getUsers,getUserById,updateU
                 phoneNumber: userById?.phoneNumber,
                 instagram: userById?.instagram,
                 email: userById?.email,
-                password: '',
-                repeatPassword: '',
-                role: userById?.role
             }}
             //searchInputsConfig = {userSearchInputConfig}
              getDataFunc={getUsers}
              valueById={userById}
              getByIdFunc={getUserById}
+             createFunc={createUser}
              updateFunc={updateUser}
              deleteFunc={deleteUser}
 
@@ -80,4 +71,4 @@ const mapStateToProps = state=>{
     }
 }
 
-export  default  connect(mapStateToProps,{getUsers,getCities,getUserById,deleteUser,updateUser})(UsersPage)
+export  default  connect(mapStateToProps,{createUser,getUsers,getCities,getUserById,deleteUser,updateUser})(UsersPage)

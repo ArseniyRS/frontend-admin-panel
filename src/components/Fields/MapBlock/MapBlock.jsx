@@ -11,6 +11,7 @@ const MapBlock = props=> {
     const placemarkRef = React.useRef(null);
     const mapRef = React.useRef(null);
     const [address, setAddress] = React.useState("");
+    const [addressComment, setAddressComment] = React.useState("");
     const createPlacemark = (coords) => {
 
         return new ymaps.current.Placemark(
@@ -25,7 +26,12 @@ const MapBlock = props=> {
         );
     };
     useEffect(()=>{
-        props.setFieldValue(props.name,address)
+        props.setFieldValue(props.name,{
+            street: address,
+            addressComment: addressComment,
+            latitude: center[0],
+            longitude: center[1]
+        })
     },[address])
     const getAddress = (coords) => {
         setCenter(coords)
@@ -55,7 +61,12 @@ const MapBlock = props=> {
     return (
         <div className={'mapField'}>
             <label htmlFor={props.name}>{props.placeholder}</label>
-            <input type="text" name={props.name} value={address} readOnly/>
+            <label htmlFor="addressComment" className={'addressComment-label'}>Комментарии к адресу</label>
+            <div className={'mapField__InputBlock'}>
+                    <input type="text" name={props.name} value={address} readOnly/>
+                    <input type="text" name={'addressComment'} onChange={(e)=>setAddressComment(e.target.value)} value={addressComment} placeholder={'Введите уточнение (5 этаж...)'}/>
+            </div>
+
             <YMaps enterprise query={{apikey: "1a9e7380-7d7d-47a9-bdb3-eb90e115a1a3"}}>
                 <div className={'map-container'}>
                 <Map

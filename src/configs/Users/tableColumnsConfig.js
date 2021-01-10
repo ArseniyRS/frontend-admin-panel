@@ -1,4 +1,5 @@
 import React from "react";
+import Moment from "react-moment";
 
 export const UserColumns  =[
     {
@@ -40,5 +41,6 @@ export const UserColumns  =[
         title: "Дата создания",
         dataIndex: 'registered',
         key: 'registered',
+        render: (value)=><Moment format="DD.MM.YYYY" >{value}</Moment>
     },
 ]

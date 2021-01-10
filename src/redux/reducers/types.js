@@ -15,6 +15,24 @@ export const DELETED_CATEGORY = 'DELETED_CATEGORY'
 export const UPDATED_CATEGORY = 'UPDATED_CATEGORY'
 
 
+export const WRITE_QAS = 'WRITE_QAS'
+export const WRITE_QAS_BY_ID = 'WRITE_QAS_BY_ID'
+export const ADDED_QAS = 'ADDED_QAS'
+export const DELETED_QAS = 'DELETED_QAS'
+export const UPDATED_QAS = 'UPDATED_QAS'
+
+export const WRITE_RULE = 'WRITE_RULE'
+export const WRITE_RULE_BY_ID = 'WRITE_RULE_BY_ID'
+export const ADDED_RULE = 'ADDED_RULE'
+export const DELETED_RULE = 'DELETED_RULE'
+export const UPDATED_RULE = 'UPDATED_RULE'
+
+export const WRITE_ABOUT = 'WRITE_ABOUT'
+export const WRITE_ABOUT_BY_ID = 'WRITE_ABOUT_BY_ID'
+export const ADDED_ABOUT = 'ADDED_ABOUT'
+export const DELETED_ABOUT = 'DELETED_ABOUT'
+export const UPDATED_ABOUT = 'UPDATED_ABOUT'
+
 export const WRITE_SPECIALISTS = 'WRITE_CATEGORIES'
 export const WRITE_SPECIALIST_BY_ID = 'WRITE_CATEGORY_BY_ID'
 export const ADDED_SPECIALIST = 'ADDED_CATEGORY'
@@ -34,7 +52,7 @@ export const WRITE_CITIES = 'WRITE_CITIES'
 
 export const WRITE_USERS = 'WRITE_USERS'
 export const WRITE_USER_BY_ID = 'WRITE_USER_BY_ID'
-
+export const ADDED_USER = 'ADDED_USER'
 export const DELETED_USER = 'DELETED_USER'
 export const UPDATED_USER = 'UPDATED_USER'
 

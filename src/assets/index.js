@@ -15,7 +15,9 @@ import refreshSVG from './icons/refresh.svg'
 import userStatSVG from './icons/userStat.svg'
 import specStatSVG from './icons/specStat.svg'
 import companyStatSVG from './icons/companyStat.svg'
+import addImageSVG from './icons/addImage.svg'
 export {
+    addImageSVG,
     refreshSVG,
     companyStatSVG,
     specStatSVG,

@@ -5,11 +5,26 @@
 }
 
 .map-container{
-    width: 500px;
+    width: 775px;
+
     height:350px!important;
     position: relative;
     border-radius : 5px;
     border: 1px solid #929292;
     margin-top: 10px;
     overflow: hidden;
+}
+.mapField__InputBlock{
+    display: flex;
+    width: 775px;
+    justify-content: space-between;
+}
+.mapField__InputBlock input{
+    width: 380px!important;
+}
+.addressComment-label{
+    left: 400px;
+    top: 0;
+    position: absolute;
+    width: 200px;
 }

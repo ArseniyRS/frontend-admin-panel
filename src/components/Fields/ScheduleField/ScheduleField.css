@@ -1,21 +1,35 @@
 .schedule-item{
     display: flex;
     align-items: center;
+
     width: 440px;
-    justify-content: space-between;
 }
 .schedule-item span{
-    margin: 10px 10px 0 12px;
-    width: 120px;
+    /*margin: 10px 10px 0 12px;*/
+    /*width: 120px;*/
 
 }
 .timeFrom input, .timeTo input{
-    width: 53px;
-    height: 35px;
+    width: 53px!important;
+    height: 35px!important;
     border: none!important;
     background: #FCFCFC;
 
     box-shadow: inset 0px 2px 4px rgba(53, 53, 53, 0.2);
     border-radius: 5px;
     margin: 0 5px;
+}
+
+.schedule-item__day-checkbox{
+    width: 15px!important;
+    height: 15px!important;
+}
+.schedule-item__day{
+    margin-left: 13px;
+    margin-top: 10px;
+    width: 115px;
+    margin-right: 13px;
+}
+.schedule-item__divider{
+    margin-top: 10px;
 }

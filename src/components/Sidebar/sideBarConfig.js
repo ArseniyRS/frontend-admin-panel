@@ -36,12 +36,12 @@ export const sideBarConfig = [
 
     },
     {
-        to: '/about-us',
+        to: '/about',
         name: 'О компании',
 
     },
     {
-        to: '/question-answer',
+        to: '/qas',
         name: 'Вопрос ответ',
 
     },

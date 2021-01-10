@@ -14,6 +14,9 @@ import {tokensChecker} from "./components/Auth/tokensChecker";
 import {toggleAuth, writeProfile} from "./redux/reducers/authReducer";
 import MainPage from "./pages/MainPage/MainPage";
 import {getUserById} from "./redux/reducers/userReducer";
+import QasPage from "./pages/QasPage/QasPage";
+import RulesPage from "./pages/RulesPage/RulesPage";
+import AboutPage from "./pages/AboutPage/AboutPage";
 
 function App(props) {
     useEffect(()=>{
@@ -40,6 +43,9 @@ function App(props) {
                           <Route path={'/categories'} component={CategoriesPage}/>
                           <Route path={'/test'} component={TestPage}/>
                           <Route path={'/main'} component={MainPage}/>
+                          <Route path={'/qas'} component={QasPage}/>
+                          <Route path={'/rules'} component={RulesPage}/>
+                          <Route path={'/about'} component={AboutPage}/>
 
                           {/*<Route path={'/providers'} component={Users}/>*/}
                           {/*<Route path={'/profile'} exact component={ProfilePage}/>*/}

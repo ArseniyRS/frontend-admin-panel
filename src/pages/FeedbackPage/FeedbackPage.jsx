@@ -5,9 +5,11 @@ import PageRenderer from "../../components/PageRenderer/PageRendererContainer";
 import {advertisementInputConfig} from "../../configs/Advertisements/formInputsConfig";
 import {AdvertisementColumns} from "../../configs/Advertisements/tableColumnsConfig";
 import {
-
-   getSubCategories,
-
+    createCategory,
+    deleteCategory,
+    getCategory,
+    getCategoryById, getSubCategories,
+    updateCategory
 } from "../../redux/reducers/categoryReducer";
 import {
     createSpecialist,
@@ -21,7 +23,7 @@ import {getCities} from "../../redux/reducers/mainReducer";
 
 
 
-const AdvertisementPage = ({subcategories,cities,getCities,getSubCategories,specialists,specialistById,getSpecialistById,getSpecialists,createSpecialist,updateSpecialist,deleteSpecialist})=>{
+const FeedbackPage = ({subcategories,cities,getCities,getSubCategories,specialists,specialistById,getSpecialistById,getSpecialists,createSpecialist,updateSpecialist,deleteSpecialist})=>{
 
     return(
         <PageRenderer
@@ -42,37 +44,36 @@ const AdvertisementPage = ({subcategories,cities,getCities,getSubCategories,spec
             }}
             loadSelectorData={[getSubCategories,getCities]}
             creatorInitialFormValues={{
-                type: 0,
-                avatar: [],
+                avatarPath: "",
                 name: "",
                 category: "",
-                subcategory: 0,
-                cityID: 0,
+                subcategory: "",
                 url: "",
-                viezd: 0,
-                street:{},
+                cityID: "",
+                equipage: '',
+                street:"",
+                addressComment: "",
                 phone: [],
                 email: "",
                 webSite: "",
                 whatsApp: "",
-                instagram: "",
                 telegram: "",
+                instagram: "",
                 facebook: '',
                 modes: [],
                 description: '',
-                photosForm: [],
+                photos: [],
                 services: [],
 
             }}
             updaterInitialFormValues={{
-                type: specialistById?.type,
                 avatarPath: specialistById?.avatarPath,
                 name: specialistById?.name,
                 category: [],
                 subcategory: specialistById?.subcategoryID,
                 url: specialistById?.url,
                 cityID: specialistById?.cityID,
-                viezd: '',
+                equipage: '',
                 street:specialistById?.street,
                 addressComment: specialistById?.addressComment,
                 phone: [],
@@ -82,19 +83,19 @@ const AdvertisementPage = ({subcategories,cities,getCities,getSubCategories,spec
                 telegram: "",
                 instagram: "",
                 facebook: '',
-               // modes: [],
+                // modes: [],
                 description: '',
                 photos: [],
                 services: specialistById?.services,
 
             }}
-             getDataFunc={getSpecialists}
-             valueById={specialistById}
-             getByIdFunc={getSpecialistById}
-             createFunc={createSpecialist}
-             updateFunc={updateSpecialist}
-             //clearFunc={clearCategory}
-             deleteFunc={deleteSpecialist}
+            getDataFunc={getSpecialists}
+            valueById={specialistById}
+            getByIdFunc={getSpecialistById}
+            createFunc={createSpecialist}
+            updateFunc={updateSpecialist}
+            //clearFunc={clearCategory}
+            deleteFunc={deleteSpecialist}
 
         />
     )
@@ -120,4 +121,4 @@ export  default connect(mapStateToProps,
         getSubCategories,
         getCities
     })
-    (AdvertisementPage)
+(FeedbackPage)

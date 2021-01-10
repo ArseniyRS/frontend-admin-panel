@@ -1,38 +1,48 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import './ScheduleField.css'
 import {Field} from "formik";
+import ScheduleItem from "./ScheduleItem";
 
 
 const ScheduleField = props=>{
     const daysArray = ['Понедельник',"Вторник","Среда","Четверг","Пятница", "Суббота", "Воскресенье"]
-    console.log(props.arrayHelpers.form.values[props.name])
+    const [data,setData] = useState([])
     useEffect(()=>{
-        for (let i=0;i<7;i++){
-            props.arrayHelpers.push({comSpecID: '',
-                fromHour:'',
-                fromMinute: '',
-                toHour:'',
-                toMinute:'',
-                day:'',} )
+        props.setFieldValue(props.name,data)
+    },[data])
+    const changeDataHandler = (id,changedData)=>{
+        let newData=[]
+        const index = data.findIndex((el) => el.day === id);
+        console.log(data)
+        if(changedData.checked) {
+            if(index!==-1) {
+                newData = [...data.slice(0, index), changedData, ...data.slice(index + 1)];
+            }else{
+                newData = [...data, changedData];
+            }
+        }else{
+            newData = [
+                ...data.slice(0, index),
+                ...data.slice(index + 1)
+            ];
         }
-    },[])
+        return setData(newData)
+    }
+    const elements=()=> {
+        let result = []
+        for (let i = 0; i < 7; i++) {
+            result.push(<ScheduleItem key={i}
+                                      id={i}
+                                      dayName={daysArray[i]}
+                                      changeDataHandler={changeDataHandler}
 
+            />)
+        }
+        return result
+    }
     return(
         <div>
-            {
-                props.arrayHelpers.form.values[props.name].map((item, index) => {
-
-                    return(
-                        <div key={index} className={'schedule-item'}>
-                            <Field type="checkbox" name={`${props.name}.${[index]}["day"]`} value={index} />
-                            <span>{daysArray[index]}</span>
-                            <div className={'timeFrom'}><Field name={`${props.name}.${[index]}["fromHour"]`} type="text"/>:<Field name={`${props.name}.${[index]}["fromMinute"]`} type="text"/> </div>
-                            -
-                            <div className={'timeTo'} ><Field name={`${props.name}.${[index]}["toHour"]`} type="text"/>:<Field name={`${props.name}.${[index]}["toMinute"]`}  type="text"/> </div>
-                        </div>
-                    )
-                })
-            }
+            {elements()}
         </div>
 
     )

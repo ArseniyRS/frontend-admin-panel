@@ -19,7 +19,7 @@ export const getTemplate = async (dispatch,getFunc, actionType,toggleLoader,id=n
         changedResponse=response
         changedResponse['key']=response.id
     }
-    console.log(changedResponse)
+   // console.log(changedResponse)
     dispatch({type:actionType,payload: changedResponse})
     dispatch(toggleLoader(false))
 

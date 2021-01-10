@@ -7,6 +7,7 @@ import URLField from "../Fields/URLField/URLField";
 import FieldWithIcon from "../Fields/FieldWithIcon/FieldWithIcon";
 import MapBlock from "../Fields/MapBlock/MapBlock";
 import ScheduleField from "../Fields/ScheduleField/ScheduleField";
+import TextEditor from "../Fields/TextEditor/TextEditor";
 
 
 
@@ -18,13 +19,15 @@ const FormInput = ({
                 type='',
                 imageCount,
                 styles,
-               selectInputData=[],
-               selectorProperty='',
-               additionally,
+                selectInputData=[],
+                selectorProperty='',
+                additionally,
                 iconInput,
-               radioLabel,
-               required,
-               options=[]
+                radioLabel,
+                required,
+                options=[],
+                objectTemplate,
+                objectTemplateStyles
                    })=>{
     return(
         <div className="createOrEditField" style={styles ? styles : undefined} >
@@ -42,12 +45,15 @@ const FormInput = ({
                             name={name}
                             arrayHelpers={arrayHelpers}
                             labelObject={labelObject}
+                            objectTemplate={objectTemplate}
+                            objectTemplateStyles={objectTemplateStyles}
                         />}
                     </FieldArray>
 
             : type === 'radio' ?
                     <RadioGroup name={name} label={radioLabel}/>
-
+                    : type==='textarea' ?
+                        <Field name={name} as={'textarea'} placeholder={placeholder} />
                 : type==='selector' ?
                 <Field name={name} as={'select'} placeholder={placeholder} >
 
@@ -66,7 +72,13 @@ const FormInput = ({
                                                                               name={name}/>}
                 </Field>
                 : type==='url' ?
-                                <URLField name={name} placeholder={placeholder}/>
+                                    <Field name={name} >
+                                        {({field:{name,value},form: { setFieldValue}}) => <URLField value= {value}
+                                                                                                    name={name}
+                                                                                                    placeholder={placeholder}
+                                                                                                    setFieldValue={setFieldValue}
+                                        />}
+                                    </Field>
                 : type ==='withIcon' ?
                 <Field name={name}>
                     {({field:{name},form: { setFieldValue}}) =><FieldWithIcon setFieldValue={setFieldValue}
@@ -81,16 +93,29 @@ const FormInput = ({
                                                                             />}
                 </Field>
                 :type==='schedule'?
-                <FieldArray
+                <Field
                     name={name}>
-                    {(arrayHelpers) =>
+                    {({field:{name,value},form: { setFieldValue}}) =>
                         <ScheduleField
                             placeholder={placeholder}
                             name={name}
-                            arrayHelpers={arrayHelpers}
+                            value={value}
+                            setFieldValue={setFieldValue}
                         />
                     }
-                </FieldArray>
+                </Field>
+                :type==='textEditor' ?
+                    <Field
+                        name={name}>
+                        {({field: {name, value}, form: {setFieldValue}}) =>
+                            <TextEditor
+                                placeholder={placeholder}
+                                name={name}
+                                value={value}
+                                setFieldValue={setFieldValue}
+                            />
+                        }
+                    </Field>
                  :
                 <Field name={name} placeholder={placeholder}/>
 

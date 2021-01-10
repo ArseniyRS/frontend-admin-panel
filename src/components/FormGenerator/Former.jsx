@@ -10,28 +10,56 @@ import CancelBtn from "../Btns/CancelBtn";
 
 
 const Former = (props)=>{
-    const inputs = Object.keys(props.initialVals).map((item,index)=>{
-        return(
-            <FormInput
-                key={item}
-                name={item}
-                placeholder={props.inputConfig[index]?.placeholder}
-                label={props.inputConfig[index]?.label}
-                labelObject={props.inputConfig[index]?.labelObject}
-                radioLabel={props.inputConfig[index]?.radioLabel}
-                type={props.inputConfig[index]?.type}
-                imageCount={props.inputConfig[index]?.imageCount}
-                additionally={ props.inputConfig[index]?.additionally}
-                iconInput={ props.inputConfig[index]?.iconInput}
-                required={props.inputConfig[index]?.required}
-                selectInputData={props.inputConfig[index]?.selectInputData}
-                options={props.optionsForSelector}
-                selectorProperty={props.inputConfig[index]?.selectorProperty}
-                styles={props.inputConfig[index]?.styles}
-
-            />
-        )
-    })
+    const inputs = ()=>{
+        let result=[]
+        const initValsKeys =  Object.keys(props.initialVals)
+        for(let i=0;i<initValsKeys.length;i++){
+            for(let j=0;j<props.inputConfig.length;j++){
+                if(initValsKeys[i]===props.inputConfig[j]?.key){
+                    console.log(initValsKeys[i])
+                    console.log(props.inputConfig[j]?.key)
+                    result.push(<FormInput
+                        key={initValsKeys[i]}
+                        name={initValsKeys[i]}
+                        placeholder={props.inputConfig[j]?.placeholder}
+                        label={props.inputConfig[j]?.label}
+                        labelObject={props.inputConfig[j]?.labelObject}
+                        radioLabel={props.inputConfig[j]?.radioLabel}
+                        type={props.inputConfig[j]?.type}
+                        imageCount={props.inputConfig[j]?.imageCount}
+                        additionally={props.inputConfig[j]?.additionally}
+                        iconInput={props.inputConfig[j]?.iconInput}
+                        required={props.inputConfig[j]?.required}
+                        selectInputData={props.inputConfig[j]?.selectInputData}
+                        options={props.optionsForSelector}
+                        selectorProperty={props.inputConfig[j]?.selectorProperty}
+                        styles={props.inputConfig[j]?.fieldStyles}
+                        objectTemplate={props.inputConfig[j]?.objectTemplate}
+                        objectTemplateStyles={props.inputConfig[j]?.objectTemplateStyles}
+                    />)
+                }
+            }
+        }
+        return result
+    }
+    const styledInputs = (inputs)=>{
+        let result = []
+        for (let i=0;i<inputs.length; i++){
+            let inp=[]
+            if(props.inputConfig[i]?.parentBlock === 'open') {
+                for (let j=i;j<inputs.length;j++) {
+                    inp.push(inputs[j])
+                     if(props.inputConfig[j]?.parentBlock === 'close'){
+                         i=j
+                        break
+                    }
+                }
+               result.push(<div className={'createOrEditContainer__block'} style={props.inputConfig[i]?.blockStyles}>{inp}</div>)
+            }else {result.push(inputs[i])}
+        }
+        console.log(result)
+        return result
+    }
     const array= Object.keys(props.initialVals)
     const schema = validationGenerator(array,props.inputConfig)
     return(
@@ -52,7 +80,7 @@ const Former = (props)=>{
                     return (
                         <Form>
                             <div className={"createOrEditContainer__fields"}>
-                                {inputs}
+                                {styledInputs(inputs())}
                             </div>
 
                             <div className={"createOrEditContainer__btns"}>
