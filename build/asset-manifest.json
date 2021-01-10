@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/static/css/main.092a688a.chunk.css",
+    "main.js": "/static/js/main.db8ec776.chunk.js",
+    "main.js.map": "/static/js/main.db8ec776.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.f3adc0f5.js",
+    "runtime-main.js.map": "/static/js/runtime-main.f3adc0f5.js.map",
+    "static/js/2.c6f0f91c.chunk.js": "/static/js/2.c6f0f91c.chunk.js",
+    "static/js/2.c6f0f91c.chunk.js.map": "/static/js/2.c6f0f91c.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.092a688a.chunk.css.map": "/static/css/main.092a688a.chunk.css.map",
+    "static/js/2.c6f0f91c.chunk.js.LICENSE.txt": "/static/js/2.c6f0f91c.chunk.js.LICENSE.txt",
+    "static/media/add.d88919a8.svg": "/static/media/add.d88919a8.svg",
+    "static/media/authBg.cf2f9f6a.jpg": "/static/media/authBg.cf2f9f6a.jpg",
+    "static/media/companyStat.4b1310ab.svg": "/static/media/companyStat.4b1310ab.svg",
+    "static/media/delete.2513b4aa.svg": "/static/media/delete.2513b4aa.svg",
+    "static/media/deleteImage.c3a40544.svg": "/static/media/deleteImage.c3a40544.svg",
+    "static/media/facebook.75924e95.svg": "/static/media/facebook.75924e95.svg",
+    "static/media/instagram.5e75c6d5.svg": "/static/media/instagram.5e75c6d5.svg",
+    "static/media/logoSVG.eef6d905.svg": "/static/media/logoSVG.eef6d905.svg",
+    "static/media/plus.5a07b261.svg": "/static/media/plus.5a07b261.svg",
+    "static/media/refresh.183df870.svg": "/static/media/refresh.183df870.svg",
+    "static/media/removeItem.d8d76063.svg": "/static/media/removeItem.d8d76063.svg",
+    "static/media/search.80f4a161.svg": "/static/media/search.80f4a161.svg",
+    "static/media/specStat.dc858793.svg": "/static/media/specStat.dc858793.svg",
+    "static/media/telegram.638afeff.svg": "/static/media/telegram.638afeff.svg",
+    "static/media/url.ac0a5d07.svg": "/static/media/url.ac0a5d07.svg",
+    "static/media/userStat.3997bcea.svg": "/static/media/userStat.3997bcea.svg",
+    "static/media/whatsapp-icon.53687a38.svg": "/static/media/whatsapp-icon.53687a38.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f3adc0f5.js",
+    "static/js/2.c6f0f91c.chunk.js",
+    "static/css/main.092a688a.chunk.css",
+    "static/js/main.db8ec776.chunk.js"
+  ]
+}
