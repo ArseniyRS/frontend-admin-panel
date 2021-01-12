@@ -17,6 +17,7 @@ import {getUserById} from "./redux/reducers/userReducer";
 import QasPage from "./pages/QasPage/QasPage";
 import RulesPage from "./pages/RulesPage/RulesPage";
 import AboutPage from "./pages/AboutPage/AboutPage";
+import InstructionsPage from "./pages/InstructionPage/InstructionPage";
 
 function App(props) {
     useEffect(()=>{
@@ -37,7 +38,6 @@ function App(props) {
                   <SidebarList/>
                   <div className="page-content">
                       <Switch>
-                          {/*<Route path={'/orders'} component={OrdersPage}/>*/}
                           <Route path={'/users'} component={UsersPage}/>
                           <Route path={'/advertisements'} component={AdvertisementPage}/>
                           <Route path={'/categories'} component={CategoriesPage}/>
@@ -46,9 +46,7 @@ function App(props) {
                           <Route path={'/qas'} component={QasPage}/>
                           <Route path={'/rules'} component={RulesPage}/>
                           <Route path={'/about'} component={AboutPage}/>
-
-                          {/*<Route path={'/providers'} component={Users}/>*/}
-                          {/*<Route path={'/profile'} exact component={ProfilePage}/>*/}
+                          <Route path={'/instruction'} component={InstructionsPage}/>
 
                       </Switch>
                   </div>

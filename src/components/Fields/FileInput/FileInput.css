@@ -1,0 +1,33 @@
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #929292;
+    box-sizing: border-box!important;
+    border-radius: 5px;
+    padding: 15px;
+    display: inline-block;
+    cursor: pointer;
+    width: 500px;
+    position: relative;
+    height: 46px;
+    margin-top: 10px;
+}
+
+.file-preview {
+    margin: 0 10px;
+}
+
+.custom-file-btn{
+    position: absolute;
+    right: -2px;
+    top: -1px;
+    height: 104%;
+    background: #929292;
+    border-radius: 0px 5px 5px 0px;
+    color: #ffffff;
+    width: 88px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

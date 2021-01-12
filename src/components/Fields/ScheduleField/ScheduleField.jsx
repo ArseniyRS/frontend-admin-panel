@@ -6,7 +6,21 @@ import ScheduleItem from "./ScheduleItem";
 
 const ScheduleField = props=>{
     const daysArray = ['Понедельник',"Вторник","Среда","Четверг","Пятница", "Суббота", "Воскресенье"]
-    const [data,setData] = useState([])
+    const createInitialData = ()=>{
+        let resultData=[]
+        for (let i = 0; i < 7; i++) {
+            resultData.push({
+                fromHour: 0,
+                fromMinute: 0,
+                toHour: 0,
+                toMinute: 0,
+                day: i,
+                checked: false
+            })
+        }
+        return resultData
+    }
+    const [data,setData] = useState(props.value.length ? props.value : createInitialData())
     useEffect(()=>{
         props.setFieldValue(props.name,data)
     },[data])
@@ -28,9 +42,11 @@ const ScheduleField = props=>{
         }
         return setData(newData)
     }
+
     const elements=()=> {
         let result = []
         for (let i = 0; i < 7; i++) {
+
             result.push(<ScheduleItem key={i}
                                       id={i}
                                       dayName={daysArray[i]}

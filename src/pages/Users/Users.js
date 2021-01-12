@@ -3,14 +3,14 @@ import {connect} from "react-redux";
 import PageRenderer from "../../components/PageRenderer/PageRendererContainer";
 import {userInputConfig} from "../../configs/Users/formInputsConfig";
 import {UserColumns} from "../../configs/Users/tableColumnsConfig";
-import {createUser, deleteUser, getUserById, getUsers, updateUser} from "../../redux/reducers/userReducer";
+import {clearUser, createUser, deleteUser, getUserById, getUsers, updateUser} from "../../redux/reducers/userReducer";
 import {getCities} from "../../redux/reducers/mainReducer";
 
 
 
 
 
-const UsersPage = ({users,cities,userById,createUser,getCities,getUsers,getUserById,updateUser,deleteUser})=>{
+const UsersPage = ({users,cities,userById,createUser,getCities,clearUser,getUsers,getUserById,updateUser,deleteUser})=>{
     return(
         <PageRenderer
             pageUrl ={'users'}
@@ -32,7 +32,7 @@ const UsersPage = ({users,cities,userById,createUser,getCities,getUsers,getUserB
                 patronymic: "",
                 birthDate: "",
                 gender: 0,
-                cityID: '',
+                cityID: 0,
                 phoneNumber: "",
                 instagram: "",
                 email: "",
@@ -59,6 +59,7 @@ const UsersPage = ({users,cities,userById,createUser,getCities,getUsers,getUserB
              createFunc={createUser}
              updateFunc={updateUser}
              deleteFunc={deleteUser}
+            clearFunc={clearUser}
 
         />
     )
@@ -71,4 +72,4 @@ const mapStateToProps = state=>{
     }
 }
 
-export  default  connect(mapStateToProps,{createUser,getUsers,getCities,getUserById,deleteUser,updateUser})(UsersPage)
+export  default  connect(mapStateToProps,{clearUser,createUser,getUsers,getCities,getUserById,deleteUser,updateUser})(UsersPage)

@@ -38,7 +38,8 @@ export const userInputConfig = [
         label: "Дата рождения",
         placeholder: "Дата рождения пользователя",
         //required: "Впишите дату рождения пользователя",
-        key:'birthDate'
+        key:'birthDate',
+        type: 'calendar'
     },
     {
         label: "Пол",

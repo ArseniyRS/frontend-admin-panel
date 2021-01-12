@@ -2,7 +2,7 @@ import {facebookSVG, instagramSVG, telegramSVG, whatsappSVG} from "../../assets"
 
 export const advertisementInputConfig = [
     {
-        additionally: "Хочу добавить услугу как",
+        additionally: "Хочу добавить услугу как:",
         // required: "Укажите пол пользователя",
         type: 'radio',
         radioLabel: ['Компания','Специалист'],
@@ -143,7 +143,8 @@ export const advertisementInputConfig = [
         type: 'image',
        imageCount: 4,
         dataType: 'array',
-        key: 'photosForm'
+        key: 'photosForm',
+        fileTypes: ['jpg','png']
     },
     {
         placeholder: "Добавить еще услугу",

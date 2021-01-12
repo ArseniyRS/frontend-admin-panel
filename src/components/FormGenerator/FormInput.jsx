@@ -8,6 +8,8 @@ import FieldWithIcon from "../Fields/FieldWithIcon/FieldWithIcon";
 import MapBlock from "../Fields/MapBlock/MapBlock";
 import ScheduleField from "../Fields/ScheduleField/ScheduleField";
 import TextEditor from "../Fields/TextEditor/TextEditor";
+import FileInput from "../Fields/FileInput/FileInput";
+import CalendarInput from "../Fields/CalendarInput/CalendarInput";
 
 
 
@@ -81,15 +83,17 @@ const FormInput = ({
                                     </Field>
                 : type ==='withIcon' ?
                 <Field name={name}>
-                    {({field:{name},form: { setFieldValue}}) =><FieldWithIcon setFieldValue={setFieldValue}
+                    {({field:{name,value},form: { setFieldValue}}) =><FieldWithIcon setFieldValue={setFieldValue}
+                                                                                    value={value}
                                                                               iconInput={iconInput}
                                                                                   name={name}/>}
                 </Field>
                 :type==='map'?
                 <Field name={name}>
-                    {({field:{name},form: { setFieldValue}}) => <MapBlock setFieldValue={setFieldValue}
+                    {({field:{name,value},form: { setFieldValue}}) => <MapBlock setFieldValue={setFieldValue}
                                                                           placeholder={placeholder}
                                                                           name={name}
+                                                                                value={value}
                                                                             />}
                 </Field>
                 :type==='schedule'?
@@ -116,7 +120,30 @@ const FormInput = ({
                             />
                         }
                     </Field>
-                 :
+                 :type==='file'?
+            <Field name={name}>
+                {({field: {name, value}, form: {setFieldValue}}) =>
+                    <FileInput
+                        placeholder={placeholder}
+                        name={name}
+                        value={value}
+                        setFieldValue={setFieldValue}
+                    />
+                }
+            </Field>
+
+            :type==='calendar'?
+                <Field name={name}>
+                    {({field: {name, value}, form: {setFieldValue}}) =>
+                        <CalendarInput
+                            placeholder={placeholder}
+                            name={name}
+                            value={value}
+                            setFieldValue={setFieldValue}
+                        />
+                    }
+                </Field>
+                :
                 <Field name={name} placeholder={placeholder}/>
 
             }

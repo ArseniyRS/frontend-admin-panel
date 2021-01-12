@@ -44,10 +44,12 @@ const PageRenderer = ({
 
     isLoading,
 
-
+    table=true,
     adding=true,
     editing=true,
     deleting=true,
+
+    title=false,
 
     username
                       })=>{
@@ -56,9 +58,9 @@ const PageRenderer = ({
         <>
             <a href="http://46.101.99.48/"  target={'_blank'} className = 'page-content__open-site'>Открыть сайт</a>
             <div className = 'page-content__profile'><span>{username.name}</span> <img  alt=""/></div>
+            {title &&<span className='page-content__title'>{pageTitle}</span>}
             <Switch>
                         <Route exact path={`/${pageUrl}`}>
-
                             <span className='page-content__title'>{pageTitle}</span>
                             <AddBtn
                                 urlToCreate={`/${pageUrl}/${pageUrl}-creator`}
@@ -68,6 +70,7 @@ const PageRenderer = ({
                                 searchInputsConfig={searchInputsConfig}
                             />
                             }
+                            {table &&
                             <TableContainer
                                 isLoading={isLoading}
                                 getDataFunc={getDataFunc}
@@ -78,6 +81,7 @@ const PageRenderer = ({
                                 //  handlerClick={clickOnRecord}
                                 deleting={deleting}
                             />
+                            }
                             {deleting &&
                             <DeleteBtn
                                 deleteFunc = {deleteFunc}
@@ -111,23 +115,10 @@ const PageRenderer = ({
                                 inputConfig={formInputsConfig}
                                 optionsForSelector={optionsForSelectorData}
                                 isLoading={isLoading}
+                                clearFunc = {clearFunc}
                             />
                         </Route>
                         }
-                        {/*<Route path={`/${pageUrl}/view/:id`}>*/}
-                        {/*    <RecordViewerContainer*/}
-                        {/*        titles={recordViewTitlesConfig}*/}
-                        {/*        urlToUpd={`/${pageUrl}/${pageUrl}-updater`}*/}
-                        {/*        urlToTable={`/${pageUrl}`}*/}
-
-                        {/*        valueById={valueById}*/}
-                        {/*        getByIdFunc={getByIdFunc}*/}
-                        {/*        clearFunc={clearFunc}*/}
-                        {/*        isLoading={isLoading}*/}
-
-                        {/*        editing={editing}*/}
-                        {/*    />*/}
-                        {/*</Route>*/}
                     </Switch>
 
         </>

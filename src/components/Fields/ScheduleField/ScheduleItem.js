@@ -9,11 +9,9 @@ const ScheduleItem = ({id,dayName,changeDataHandler})=>{
     const [fromMinute,setFromMinute] = useState('')
     const [toHour,setToHour] = useState('')
     const [toMinute,setToMinute] = useState('')
-    console.log(fromHour)
     useEffect(()=>{
 
             changeDataHandler(id, {
-                //comSpecID: 0,
                 fromHour: fromHour,
                 fromMinute: fromMinute,
                 toHour: toHour,

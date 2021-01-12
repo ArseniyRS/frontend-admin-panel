@@ -2,7 +2,6 @@ import React, {useEffect} from 'react'
 import {connect} from "react-redux";
 import StatisticBlock from "../../components/Statisctic/StatisticBlock";
 import {
-    avatarPNG,
     companyStatSVG,
     specStatSVG,
     userStatSVG
@@ -10,7 +9,6 @@ import {
 import {getActions, getStatistic} from "../../redux/reducers/mainReducer";
 
 import './MainPage.css'
-import {Link, Route} from "react-router-dom";
 import TableContainer from "../../components/Table/TableContainer";
 import {LastActionsColumns} from "../../configs/Main/tableColumnsConfig";
 

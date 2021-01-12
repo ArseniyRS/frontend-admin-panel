@@ -52,7 +52,7 @@ export const sideBarConfig = [
     },
 
     {
-        to: '/instructions',
+        to: '/instruction',
         name: 'Инструкции',
     },
 

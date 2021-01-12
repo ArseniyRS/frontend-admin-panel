@@ -9,6 +9,7 @@ import {userReducer} from "./userReducer";
 import {ruleReducer} from "./ruleReducer";
 import {qasReducer} from "./qasReducer";
 import {aboutReducer} from "./aboutReducer";
+import {instructionReducer} from "./instructionReducer";
 
 
 
@@ -23,7 +24,8 @@ export const rootReducer = combineReducers({
     user: userReducer,
     rules: ruleReducer,
     qas: qasReducer,
-    about: aboutReducer
+    about: aboutReducer,
+    instruction: instructionReducer
 })
 
 

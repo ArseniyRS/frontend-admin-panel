@@ -6,12 +6,12 @@ import './MapBlock.css'
 
 
 const MapBlock = props=> {
-    const [center, setCenter] = useState([42.8746, 74.5698])
+    const [center, setCenter] = useState(props.value?.longitude && props.value?.latitude ? [props.value.longitude, props.value.latitude]: [42.8746, 74.5698])
     const ymaps = React.useRef(null);
     const placemarkRef = React.useRef(null);
     const mapRef = React.useRef(null);
-    const [address, setAddress] = React.useState("");
-    const [addressComment, setAddressComment] = React.useState("");
+    const [address, setAddress] = React.useState(props.value?.street? props.value : '');
+    const [addressComment, setAddressComment] = React.useState(props.value?.addressComment? props.addressComment : '');
     const createPlacemark = (coords) => {
 
         return new ymaps.current.Placemark(
@@ -32,7 +32,7 @@ const MapBlock = props=> {
             latitude: center[0],
             longitude: center[1]
         })
-    },[address])
+    },[address,addressComment])
     const getAddress = (coords) => {
         setCenter(coords)
         placemarkRef.current.properties.set("iconCaption", "Секунду...");

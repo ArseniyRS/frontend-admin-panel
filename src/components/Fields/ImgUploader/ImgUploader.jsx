@@ -4,12 +4,13 @@ import ImageUploading from 'react-images-uploading';
 import {addImageSVG, deleteImageSVG} from "../../../assets";
 
 
-const ImgUploader = ({setFieldValue,name,value,placeholder,imageCount=1})=>{
+const ImgUploader = ({setFieldValue,name,value,placeholder,imageCount=1,fileTypes=['jpg', 'gif', 'png','svg']})=>{
     const [file,setFile] = useState([])
-
     useEffect(()=>{
-        setFieldValue(name,file)
+        console.log(file)
+            setFieldValue(name, file)
     },[file])
+
 
     const onChange = (fileList) => {
         setFile(fileList);
@@ -22,6 +23,7 @@ const ImgUploader = ({setFieldValue,name,value,placeholder,imageCount=1})=>{
                 onChange={onChange}
                 maxNumber={imageCount}
                 dataURLKey="data_url"
+                acceptType={fileTypes}
             >
                 {({
                       onImageUpload,
@@ -30,6 +32,7 @@ const ImgUploader = ({setFieldValue,name,value,placeholder,imageCount=1})=>{
                       onImageRemove,
                       isDragging,
                       dragProps,
+                      errors
                   }) => (
                               imageCount===1 ?
                             <div className="upload__image-wrapper">
@@ -52,7 +55,12 @@ const ImgUploader = ({setFieldValue,name,value,placeholder,imageCount=1})=>{
                                         <span className="update__image-item" onClick={() => onImageRemove(0)}>Удалить фото профиля</span>
                                 </div>
                                 }
-                               {/*{files.length!==0 && <div className={'upload__image-remove-allBtn'} onClick={onImageRemoveAll}>Удалить все файлы</div> }*/}
+                                {errors &&
+                                <>
+                                    {errors.maxNumber && <span className='formErrorMessage'>{`Максимальное количество фото - ${imageCount}`}</span>}
+                                    {errors.acceptType && <span className='formErrorMessage'>{`Этот тип файла не поддерживается. Загрузить можно (${fileTypes})`}</span>}
+                                </>
+                                }
                             </div>
                                   :
 
@@ -73,7 +81,7 @@ const ImgUploader = ({setFieldValue,name,value,placeholder,imageCount=1})=>{
                                 }
                             </div>
                                         {file.length<imageCount &&
-                                        (<div  className={'upload__imageArray-uploadBtn-loaded'}  onClick={onImageUpload}><img src={addImageSVG} alt=""/></div>)}
+                                        (<div  className={'upload__imageArray-uploadBtn-loaded'} {...dragProps} onClick={onImageUpload}><img src={addImageSVG} alt=""/></div>)}
                                     </div>
                                 ) :
                                 ( <div
@@ -89,6 +97,13 @@ const ImgUploader = ({setFieldValue,name,value,placeholder,imageCount=1})=>{
 
 
                         {file.length!==0 && <div className={'upload__image-remove-allBtn'} onClick={onImageRemoveAll}>Удалить все файлы</div> }
+
+                        {errors &&
+                        <>
+                            {errors.maxNumber && <span className='formErrorMessage'>{`Максимальное количество фото - ${imageCount}`}</span>}
+                            {errors.acceptType && <span className='formErrorMessage'>{`Этот тип файла не поддерживается. Загрузить можно (${fileTypes})`}</span>}
+                        </>
+                        }
                     </div>
                 )}
             </ImageUploading>

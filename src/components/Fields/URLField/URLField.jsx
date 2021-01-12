@@ -8,7 +8,7 @@ import './URLField.css'
 const URLField = props=>{
     return(
         <div className={'urlField'}>
-            <input name={props.name} placeholder={props.placeholder}/>
+            <input name={props.name} value={props.value} placeholder={props.placeholder} onChange={(e)=>props.setFieldValue(props.name,e.target.value)}/>
             <Link to={props.value} target="_blank">
                 <img src={urlSVG} alt=""/>
             </Link>

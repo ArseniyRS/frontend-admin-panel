@@ -16,8 +16,6 @@ const Former = (props)=>{
         for(let i=0;i<initValsKeys.length;i++){
             for(let j=0;j<props.inputConfig.length;j++){
                 if(initValsKeys[i]===props.inputConfig[j]?.key){
-                    console.log(initValsKeys[i])
-                    console.log(props.inputConfig[j]?.key)
                     result.push(<FormInput
                         key={initValsKeys[i]}
                         name={initValsKeys[i]}
@@ -36,6 +34,7 @@ const Former = (props)=>{
                         styles={props.inputConfig[j]?.fieldStyles}
                         objectTemplate={props.inputConfig[j]?.objectTemplate}
                         objectTemplateStyles={props.inputConfig[j]?.objectTemplateStyles}
+                        fileTypes={props.inputConfig[j]?.fileTypes}
                     />)
                 }
             }
@@ -57,16 +56,17 @@ const Former = (props)=>{
                result.push(<div className={'createOrEditContainer__block'} style={props.inputConfig[i]?.blockStyles}>{inp}</div>)
             }else {result.push(inputs[i])}
         }
-        console.log(result)
         return result
     }
     const array= Object.keys(props.initialVals)
     const schema = validationGenerator(array,props.inputConfig)
     return(
         <>
-        <div className={'createOrEditContainer__title'}>
-            <h2>{props.formTitle}</h2>
-        </div>
+            {props.formTitle &&
+            <div className={'createOrEditContainer__title'}>
+                <h2>{props.formTitle}</h2>
+            </div>
+            }
         <div className='createOrEditContainer'>
 
             <Formik

@@ -4,8 +4,6 @@ import {
     WRITE_USER_BY_ID,
     WRITE_USERS,
     ADDED_USER,
-    DELETED_CATEGORY,
-    UPDATED_CATEGORY, ADDED_CATEGORY
 } from './types'
 import {
     adminPostReq, specialistPostReq,
@@ -83,23 +81,9 @@ export const deleteUser = id =>{
 }
 export const createUser = (data)=>{
     const requestArray = [userPostReq,adminPostReq,superadminPostReq]
-    const img = toClearImageArray(data.avatarPath)
-    console.log(img)
-    // let formData = new FormData()
-    // //formData.append('Avatar',img[0]);
-    // formData.append('name', data.name)
-    // formData.append('surname', data.surname)
-    // formData.append('patronymic', data.patronymic)
-    // formData.append('birthDate', '0001-01-01T00:00:00')
-    // formData.append('gender', data.gender)
-    // formData.append('cityID',data.cityID)
-    // formData.append('phoneNumber', data.phoneNumber)
-    // formData.append('instagram',data.instagram)
-    // formData.append('email ', data.email)
-    // formData.append('password', data.password)
-
+    console.log( toClearImageArray(data.avatarPath))
     const fd = new FormData();
-    fd.append('avatar',img[0]);
+    fd.append('avatar', toClearImageArray(data.avatarPath));
     fd.append('name', data.name);
     fd.append('surname', data.surname);
     fd.append('email', data.email);

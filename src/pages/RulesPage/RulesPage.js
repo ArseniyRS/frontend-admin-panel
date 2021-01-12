@@ -16,7 +16,7 @@ import {ruleColumns} from "../../configs/Rules/tableColumnsConfig";
 
 
 
-const RulesPage = ({rules=[],ruleById,getRule,getRuleById,createRule,updateRule,deleteRule,clearRule})=>{
+const RulesPage = ({rules=[],ruleById,getRule,getRuleById,createRule,updateRule,deleteRule})=>{
     return(
         <PageRenderer
             pageUrl ={'rules'}
@@ -24,8 +24,6 @@ const RulesPage = ({rules=[],ruleById,getRule,getRuleById,createRule,updateRule,
 
             tableData={rules}
             tableColumnsConfig={ruleColumns}
-
-            // recordViewTitlesConfig={recordViewrulesConfig}
 
             creatorTitle={'Добавление правила'}
             updaterTitle={'Изменение правила'}
@@ -42,7 +40,6 @@ const RulesPage = ({rules=[],ruleById,getRule,getRuleById,createRule,updateRule,
             getByIdFunc={getRuleById}
             createFunc={createRule}
             updateFunc={updateRule}
-            //  clearFunc={clearRule}
             deleteFunc={deleteRule}
 
         />
@@ -51,7 +48,7 @@ const RulesPage = ({rules=[],ruleById,getRule,getRuleById,createRule,updateRule,
 const mapStateToProps = state=>{
     return{
         rules: state.rules.rules,
-        rulesById: state.rules.ruleById
+        ruleById: state.rules.ruleById
     }
 }
 export  default connect(mapStateToProps,
@@ -61,6 +58,5 @@ export  default connect(mapStateToProps,
         createRule,
         updateRule,
         deleteRule,
-        //clearRule
     }
 )(RulesPage)

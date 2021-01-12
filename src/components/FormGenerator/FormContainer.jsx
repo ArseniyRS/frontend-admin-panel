@@ -18,6 +18,7 @@ const FormContainer = ({
         if(match.params?.id )  {
             props.getByIdFunc(match.params.id)
         }
+        return ()=>props.clearFunc()
     },[])
 
     const handleSubmit = async values=>{

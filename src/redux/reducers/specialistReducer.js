@@ -65,12 +65,7 @@ export const specialistReducer = (state=initialState,action)=>{
 }
 
 
-export const clearSpecialist = ()=>{
-    return{
-        type: WRITE_SPECIALIST_BY_ID,
-        action: undefined
-    }
-}
+
 export const getSpecialists = ()=> {
     return async dispatch => getTemplate(dispatch, specialistGetReq, WRITE_SPECIALISTS, toggleLoader)
 }
@@ -78,33 +73,31 @@ export const getSpecialistById = (id)=> {
     return async dispatch => getTemplate(dispatch,specialistGetByIdReq, WRITE_SPECIALIST_BY_ID, toggleLoader,id)
 }
 export const createSpecialist = data=>{
-    console.log('red called')
-    console.log(data)
     let formData = new FormData()
     formData.append('name', data.name)
-    for (const photo of toClearImageArray(data.photosForm)) {
-        formData.append('photosForm', photo, photo.name);
-    }
-    for (const photo of toClearImageArray(data.avatar)) {
-        formData.append('avatar', photo, photo.name);
-    }
+    formData.append('subcategoryID', data.subcategory)
+    toClearImageArray(data.photosForm).map(item=>{
+        formData.append('photosForm', item);
+    })
+    formData.append('avatar', toClearImageArray(data.avatar));
     formData.append('description', data.description)
-    formData.append('street', 'data.street.street')
-    formData.append('addressComment', 'data.street.addressComment')
+    formData.append('street', data.street.street)
+    formData.append('addressComment', data.street.addressComment)
     formData.append('cityID', data.cityID)
-    formData.append('latitude', '0')
-    formData.append('longitude', '0')
-    formData.append('url', 'data.url')
+    formData.append('latitude', data.street.latitude)
+    formData.append('longitude', data.street.longitude)
+    formData.append('url', data.url)
     formData.append('modes', data.modes)
     formData.append('type', data.type)
-    formData.append('subcategoryID', data.subcategory)
-    // formData.append('links', {
-    //     phone: 'data.phone[0]',
-    //     webSite: data.webSite,
-    //     whatsApp: data.whatsApp,
-    //     telegram: data.telegram,
-    //     instagram: data.instagram,
-    //     email: data.email,})
+    formData.append('viezd', data.viezd)
+    formData.append('links.webSite', data.webSite)
+    formData.append('links.whatsApp', data.whatsApp)
+    formData.append('links.telegram', data.telegram)
+    formData.append('links.instagram', data.instagram)
+    formData.append('links.facebook', data.facebook)
+    formData.append('links.email', data.email)
+    formData.append('modes', JSON.stringify(data.modes))
+    formData.append('services', JSON.stringify(data.services))
     for (let pair of formData.entries()) {
         console.log(pair[0]+ ', ' + pair[1]);
     }
@@ -121,6 +114,8 @@ export const deleteSpecialist = id =>{
 export const updateSpecialist = (id,data) =>{
     return async dispatch => createOrChangeTemplate(dispatch,specialistUpdReq,data,UPDATED_SPECIALIST,toggleLoader,id)
 }
+
+
 
 
 
