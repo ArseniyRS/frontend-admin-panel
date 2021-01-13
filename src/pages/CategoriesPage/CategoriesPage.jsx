@@ -5,6 +5,7 @@ import {CategoryColumns} from "../../configs/Categories/tableColumnsConfig";
 import PageRenderer from "../../components/PageRenderer/PageRendererContainer";
 import {categoryInputConfig} from "../../configs/Categories/formInputsConfig";
 import {
+    clearCategory,
     createCategory,
     deleteCategory,
     getCategory,
@@ -15,8 +16,7 @@ import {
 
 
 
-
-const CategoriesPage = ({categories=[],categoryById,getCategory,getCategoryById,createCategory,updateCategory,deleteCategory,clearCategory})=>{
+const CategoriesPage = ({categoryFetchLoader,categories=[],categoryById,getCategory,getCategoryById,createCategory,updateCategory,deleteCategory,clearCategory})=>{
     return(
         <PageRenderer
             pageUrl ={'categories'}
@@ -42,8 +42,9 @@ const CategoriesPage = ({categories=[],categoryById,getCategory,getCategoryById,
             getByIdFunc={getCategoryById}
             createFunc={createCategory}
             updateFunc={updateCategory}
-           //  clearFunc={clearCategory}
+            clearFunc={clearCategory}
             deleteFunc={deleteCategory}
+            isLoading={categoryFetchLoader}
 
         />
     )
@@ -51,7 +52,8 @@ const CategoriesPage = ({categories=[],categoryById,getCategory,getCategoryById,
 const mapStateToProps = state=>{
     return{
         categories: state.category.categories,
-        categoryById: state.category.categoryById
+        categoryById: state.category.categoryById,
+        categoryFetchLoader : state.category.categoryFetchLoader
     }
 }
 export  default connect(mapStateToProps,
@@ -61,6 +63,6 @@ export  default connect(mapStateToProps,
         createCategory,
         updateCategory,
         deleteCategory,
-        //clearCategory
+        clearCategory
     }
 )(CategoriesPage)

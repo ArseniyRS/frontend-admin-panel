@@ -10,6 +10,7 @@ import {
 
 } from "../../redux/reducers/categoryReducer";
 import {
+    clearSpecialist,
     createSpecialist,
     deleteSpecialist, getSpecialistById,
     getSpecialists,
@@ -21,7 +22,7 @@ import {getCities} from "../../redux/reducers/mainReducer";
 
 
 
-const AdvertisementPage = ({subcategories,cities,getCities,getSubCategories,specialists,specialistById,getSpecialistById,getSpecialists,createSpecialist,updateSpecialist,deleteSpecialist})=>{
+const AdvertisementPage = ({specialistFetchLoader,subcategories,cities,clearSpecialist,getCities,getSubCategories,specialists,specialistById,getSpecialistById,getSpecialists,createSpecialist,updateSpecialist,deleteSpecialist})=>{
 
     return(
         <PageRenderer
@@ -93,8 +94,9 @@ const AdvertisementPage = ({subcategories,cities,getCities,getSubCategories,spec
              getByIdFunc={getSpecialistById}
              createFunc={createSpecialist}
              updateFunc={updateSpecialist}
-             //clearFunc={clearCategory}
+             clearFunc={clearSpecialist}
              deleteFunc={deleteSpecialist}
+            isLoading={specialistFetchLoader}
 
         />
     )
@@ -104,7 +106,8 @@ const mapStateToProps = state=>{
         specialists: state.specialist.specialists,
         specialistById: state.specialist.specialistById,
         subcategories: state.category.subcategories,
-        cities: state.main.cities
+        cities: state.main.cities,
+        specialistFetchLoader: state.specialist.specialistFetchLoader
     }
 }
 
@@ -116,7 +119,7 @@ export  default connect(mapStateToProps,
         createSpecialist,
         updateSpecialist,
         deleteSpecialist,
-        //clearCategory,
+        clearSpecialist,
         getSubCategories,
         getCities
     })

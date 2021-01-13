@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import {connect} from "react-redux";
 import PageRenderer from "../../components/PageRenderer/PageRendererContainer";
 import {
+    clearInstruction,
     createInstruction,
     getInstruction,
 } from "../../redux/reducers/instructionReducer";
@@ -9,7 +10,7 @@ import './InstructionPage.css'
 import FormContainer from "../../components/FormGenerator/FormContainer";
 import {instructionInputConfig} from "../../configs/Instruction/formInputsConfig";
 
-const InstructionsPage = ({isLoading,instruction=[],getInstruction,createInstruction})=>{
+const InstructionsPage = ({instructionFetchLoader,clearInstruction,instruction=[],getInstruction,createInstruction})=>{
     return(
         <>
         <PageRenderer
@@ -29,7 +30,8 @@ const InstructionsPage = ({isLoading,instruction=[],getInstruction,createInstruc
         initialVals={{file:instruction}}
         createReq={createInstruction}
         inputConfig={instructionInputConfig}
-        isLoading={isLoading}
+        isLoading={instructionFetchLoader}
+        clearFunc={clearInstruction}
     />
     </>
     )
@@ -37,12 +39,12 @@ const InstructionsPage = ({isLoading,instruction=[],getInstruction,createInstruc
 const mapStateToProps = state=>{
     return{
         instruction: state.instruction.instruction,
-        isLoading : state.auth.isFetchLoader,
+        instructionFetchLoader : state.instruction.instructionFetchLoader,
     }
 }
 export  default connect(mapStateToProps,
     {
         getInstruction,
-        createInstruction,
+        createInstruction,clearInstruction
     }
 )(InstructionsPage)

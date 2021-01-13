@@ -1,4 +1,5 @@
 import {
+    AUTH_TOGGLE_FETCH_LOADER,
     TOGGLE_AUTH,
     TOGGLE_FETCH_LOADER,
     TOGGLE_PAGE_LOADER,
@@ -10,7 +11,7 @@ import {getUserById} from "./userReducer";
 
 
 const initialState={
-    isFetchLoader: false,
+    authFetchLoader: false,
     isAuthorized: false,
     isPageLoader: false,
     authErrorMessage: undefined,
@@ -25,10 +26,10 @@ export const authReducer = (state=initialState,action)=>{
                 ...state,
                 isAuthorized: action.payload
             }
-        case TOGGLE_FETCH_LOADER:
+        case AUTH_TOGGLE_FETCH_LOADER:
             return{
                 ...state,
-                isFetchLoader: action.payload
+                authFetchLoader: action.payload
             }
         case TOGGLE_PAGE_LOADER:
             return{
@@ -77,18 +78,21 @@ export const toggleAuth = value =>{
         payload: value
     }
 }
-export const toggleLoader = bool=>{
+export const authToggleLoader = bool=>{
     return{
-        type: 'TOGGLE_FETCH_LOADER',
+        type: 'AUTH_TOGGLE_FETCH_LOADER',
         payload: bool
     }
 }
+
 export const writeProfile = id=>{
     return async dispatch =>{
+        dispatch(authToggleLoader(true))
        await userGetByIdReq(id).then((resp)=>{
            dispatch(writeUsername(resp))
             console.log(resp)
         })
+        dispatch(authToggleLoader(false))
     }
 }
 // export const authRefresh = data=> {
@@ -112,13 +116,13 @@ export const writeProfile = id=>{
 // }
 export const authSignIn = data =>{
     return async dispatch =>{
-        dispatch(toggleLoader(true))
+        dispatch(authToggleLoader(true))
         await authReq(data).then(response=>{
             console.log(response)
             //if(response.status.ok){
                 localStorage.setItem("token", response.data.token)
                 localStorage.setItem("id", response.data.id)
-                dispatch(toggleAuth(true))
+                dispatch(authToggleLoader(true))
            // }else {
             //    dispatch(writeAuthMessage('Неверно введены данные.'))
            // }
@@ -131,7 +135,7 @@ export const authSignIn = data =>{
            // }
                 //
         })
-        dispatch(toggleLoader(false))
+        dispatch(authToggleLoader(false))
     }
 }
 

@@ -3,7 +3,7 @@ import {
     WRITE_QAS_BY_ID,
     ADDED_QAS,
     DELETED_QAS,
-    UPDATED_QAS,
+    UPDATED_QAS, SPECIALIST_TOGGLE_FETCH_LOADER, QAS_TOGGLE_FETCH_LOADER,
 } from './types'
 import {
     qasDelReq,
@@ -15,17 +15,23 @@ import {
 import {getTemplate} from "../../utils/templates/getTemplate";
 import {createOrChangeTemplate} from "../../utils/templates/createOrChangeTemplate";
 import {deleteTemplate} from "../../utils/templates/deleteTemplate";
-import {toggleLoader} from "./authReducer";
 import {updateItemInStore} from "../../utils/templates/updateItemInStore";
 
 const initialState={
     qas: [],
     qasById: {},
+    qasFetchLoader: false
+
 }
 
 
 export const qasReducer = (state=initialState,action)=>{
     switch (action.type) {
+        case QAS_TOGGLE_FETCH_LOADER:
+            return{
+                ...state,
+                qasFetchLoader: action.payload
+            }
         case WRITE_QAS:
             return{
                 ...state,
@@ -62,26 +68,32 @@ export const qasReducer = (state=initialState,action)=>{
     }
 }
 
+export const qasToggleLoader = bool=>{
+    return{
+        type: 'QAS_TOGGLE_FETCH_LOADER',
+        payload: bool
+    }
+}
 
 export const clearQas = ()=>{
     return{
         type: WRITE_QAS_BY_ID,
-        action: undefined
+        action: {}
     }
 }
 
 export const getQas = ()=> {
-    return async dispatch => getTemplate(dispatch, qasGetReq, WRITE_QAS, toggleLoader)
+    return async dispatch => getTemplate(dispatch, qasGetReq, WRITE_QAS, qasToggleLoader)
 }
 export const getQasById = (id)=> {
-    return async dispatch => getTemplate(dispatch, qasGetByIdReq, WRITE_QAS_BY_ID, toggleLoader,id)
+    return async dispatch => getTemplate(dispatch, qasGetByIdReq, WRITE_QAS_BY_ID, qasToggleLoader,id)
 }
 export const createQas = data=>{
 
-    return async dispatch => createOrChangeTemplate(dispatch,qasPostReq,data,ADDED_QAS,toggleLoader)
+    return async dispatch => createOrChangeTemplate(dispatch,qasPostReq,data,ADDED_QAS,qasToggleLoader)
 }
 export const deleteQas = id =>{
-    return async dispatch =>  deleteTemplate(dispatch,qasDelReq,id,toggleLoader,DELETED_QAS)
+    return async dispatch =>  deleteTemplate(dispatch,qasDelReq,id,qasToggleLoader,DELETED_QAS)
 }
 export const updateQas = (id,data) =>{
     return async dispatch => createOrChangeTemplate(dispatch,qasUpdReq,data,UPDATED_QAS,toggleLoader,id)

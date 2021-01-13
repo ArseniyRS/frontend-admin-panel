@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 
 import PageRenderer from "../../components/PageRenderer/PageRendererContainer";
 import {
+    clearAbout,
     createAbout,
     deleteAbout,
     getAbout,
@@ -17,7 +18,7 @@ import {aboutInputConfig} from "../../configs/About/formInputsConfig";
 
 
 
-const AboutPage = ({about=[],aboutById,getAbout,getAboutById,createAbout,updateAbout,deleteAbout,clearAbout})=>{
+const AboutPage = ({aboutFetchLoader,about=[],aboutById,getAbout,getAboutById,createAbout,updateAbout,deleteAbout,clearAbout})=>{
     return(
         <PageRenderer
             pageUrl ={'about'}
@@ -42,8 +43,9 @@ const AboutPage = ({about=[],aboutById,getAbout,getAboutById,createAbout,updateA
             getByIdFunc={getAboutById}
             createFunc={createAbout}
             updateFunc={updateAbout}
-            //  clearFunc={clearAbout}
+            clearFunc={clearAbout}
             deleteFunc={deleteAbout}
+            isLoading={aboutFetchLoader}
 
         />
     )
@@ -51,7 +53,8 @@ const AboutPage = ({about=[],aboutById,getAbout,getAboutById,createAbout,updateA
 const mapStateToProps = state=>{
     return{
         about: state.about.about,
-        aboutById: state.about.aboutById
+        aboutById: state.about.aboutById,
+        aboutFetchLoader: state.about.aboutFetchLoader
     }
 }
 export  default connect(mapStateToProps,
@@ -61,6 +64,6 @@ export  default connect(mapStateToProps,
         createAbout,
         updateAbout,
         deleteAbout,
-        //clearAbout
+        clearAbout
     }
 )(AboutPage)

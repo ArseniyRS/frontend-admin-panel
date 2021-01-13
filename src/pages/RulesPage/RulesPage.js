@@ -16,7 +16,7 @@ import {ruleColumns} from "../../configs/Rules/tableColumnsConfig";
 
 
 
-const RulesPage = ({rules=[],ruleById,getRule,getRuleById,createRule,updateRule,deleteRule})=>{
+const RulesPage = ({ruleFetchLoader,rules=[],ruleById,getRule,getRuleById,createRule,updateRule,deleteRule})=>{
     return(
         <PageRenderer
             pageUrl ={'rules'}
@@ -41,14 +41,15 @@ const RulesPage = ({rules=[],ruleById,getRule,getRuleById,createRule,updateRule,
             createFunc={createRule}
             updateFunc={updateRule}
             deleteFunc={deleteRule}
-
+            isLoading={ruleFetchLoader}
         />
     )
 }
 const mapStateToProps = state=>{
     return{
         rules: state.rules.rules,
-        ruleById: state.rules.ruleById
+        ruleById: state.rules.ruleById,
+        ruleFetchLoader: state.rules.ruleFetchLoader
     }
 }
 export  default connect(mapStateToProps,

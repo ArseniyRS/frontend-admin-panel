@@ -16,9 +16,9 @@ export const citiesGetReq = ()=>instance.get('/Admin/Cities',tokenGetter()).then
 export const categoryGetReq = ()=>instance.get('/Admin/Categories',tokenGetter()).then(response=>response.data)
 export const subcategoryGetReq = ()=>instance.get('/Admin/Subcategories',tokenGetter()).then(response=>response.data)
 export const categoryGetByIdReq = (id)=>instance.get(`/Admin/Categories/${id}`,tokenGetter()).then(response=>response.data)
-export const categoryPostReq = (data)=>instance.post('/Admin/Category/Subcategory',data,tokenGetter())
+export const categoryPostReq = (data)=>instance.post('/Admin/Category/Subcategory',data,{headers: {   "Authorization" : `Bearer ${localStorage.getItem('token')}`, 'Content-Type': 'multipart/form-data' }})
 export const categoryDelReq = (id)=>instance.delete(`/Admin/Category`,{ headers: {"Authorization" : `Bearer ${localStorage.getItem('token')}`} ,data : id })
-export const categoryUpdReq = (data,id)=>instance.put(`/Admin/Category/Subcategory/${id}`,data,tokenGetter())
+export const categoryUpdReq = (data,id)=>instance.put(`/Admin/Category/Subcategory/${id}`,data,{headers: {   "Authorization" : `Bearer ${localStorage.getItem('token')}`, 'Content-Type': 'multipart/form-data' }})
 
 export const qasGetReq = ()=>instance.get('/Admin/qas',tokenGetter()).then(response=>response.data)
 export const qasGetByIdReq = (id)=>instance.get(`/Admin/qas/${id}`,tokenGetter()).then(response=>response.data)
@@ -47,7 +47,7 @@ export const aboutDelReq = (id)=>instance.delete(`/Admin/AboutApps`,{ headers: {
 export const aboutUpdReq = (data,id)=>instance.put(`/Admin/AboutApps/${id}`,data,tokenGetter())
 
 export const specialistGetReq = ()=>instance.get('/Admin/Companies',tokenGetter()).then(response=>response.data)
-export const specialistGetByIdReq = (id)=>instance.get(`/Admin/Companies/${id}`).then(response=>response.data)
+export const specialistGetByIdReq = (id)=>instance.get(`/Admin/Companies/${id}`,tokenGetter()).then(response=>response.data)
 export const specialistPostReq = (data)=>instance.post('/Personalpage/Companies',
         data,
       {headers: { "Authorization" : `Bearer ${localStorage.getItem('token')}`,'content-type': 'multipart/form-data' }})
@@ -55,7 +55,7 @@ export const specialistPostReq = (data)=>instance.post('/Personalpage/Companies'
         console.log(resp)
     }).catch(err=>console.log(err.response))
 export const specialistDelReq = (id)=>instance.delete(`/Admin/Companies`,{ headers: {"Authorization" : `Bearer ${localStorage.getItem('token')}`} ,data : id })
-export const specialistUpdReq = (data,id)=>instance.put(`/Admin/Companies/${id}`,data)
+export const specialistUpdReq = (data,id)=>instance.put(`/Admin/Companies/${id}`,data,{headers: {   "Authorization" : `Bearer ${localStorage.getItem('token')}`, 'Content-Type': 'multipart/form-data' }})
 
 export const usersGetReq = ()=>instance.get('/Admin/Users',tokenGetter()).then(response=>response.data)
 export const userGetByIdReq = (id)=>instance.get(`/Admin/Users/${id}`,tokenGetter()).then(response=>response.data)
@@ -65,4 +65,4 @@ export const adminPostReq = (data)=>instance.post('/Admin/Createadmin', data, {h
 
 export const userPostReq = (data)=>instance.post('/User/Register',data, {headers:  {'Content-Type': 'multipart/form-data' }})
 export const userDelByIdReq = (id)=>instance.delete(`/Admin/Users`,{ headers: {"Authorization" : `Bearer ${localStorage.getItem('token')}`} ,data : id })
-export const userUpdReq = (data,id)=>instance.put(`/Admin/Users/${id}`,data,tokenGetter())
+export const userUpdReq = (data,id)=>instance.put(`/Admin/Users/${id}`,data,{headers: {   "Authorization" : `Bearer ${localStorage.getItem('token')}`, 'Content-Type': 'multipart/form-data' }})

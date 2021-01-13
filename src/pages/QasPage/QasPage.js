@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 
 import PageRenderer from "../../components/PageRenderer/PageRendererContainer";
 import {
+    clearQas,
     createQas,
     deleteQas,
     getQas,
@@ -16,7 +17,7 @@ import {QasColumns} from "../../configs/Qas/tableColumnsConfig";
 
 
 
-const QasPage = ({qas=[],qasById,getQas,getQasById,createQas,updateQas,deleteQas,clearQas})=>{
+const QasPage = ({qasFetchLoader,qas=[],qasById,getQas,getQasById,createQas,updateQas,deleteQas,clearQas})=>{
     return(
         <PageRenderer
             pageUrl ={'qas'}
@@ -41,8 +42,9 @@ const QasPage = ({qas=[],qasById,getQas,getQasById,createQas,updateQas,deleteQas
             getByIdFunc={getQasById}
             createFunc={createQas}
             updateFunc={updateQas}
-            //  clearFunc={clearQas}
+            clearFunc={clearQas}
             deleteFunc={deleteQas}
+            isLoading={qasFetchLoader}
 
         />
     )
@@ -50,7 +52,8 @@ const QasPage = ({qas=[],qasById,getQas,getQasById,createQas,updateQas,deleteQas
 const mapStateToProps = state=>{
     return{
         qas: state.qas.qas,
-        qasById: state.qas.qasById
+        qasById: state.qas.qasById,
+        qasFetchLoader: state.qas.qasFetchLoader
     }
 }
 export  default connect(mapStateToProps,
@@ -60,6 +63,6 @@ export  default connect(mapStateToProps,
         createQas,
         updateQas,
         deleteQas,
-        //clearqas
+        clearQas
     }
 )(QasPage)

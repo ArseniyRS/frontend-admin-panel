@@ -1,22 +1,27 @@
 import {
     WRITE_INSTRUCTION,
-    ADDED_INSTRUCTION,
+    ADDED_INSTRUCTION, AUTH_TOGGLE_FETCH_LOADER, INSTRUCTION_TOGGLE_FETCH_LOADER, WRITE_CATEGORY_BY_ID,
 } from './types'
 import {
     instructionGetReq,
     instructionPostReq,
 } from "../../utils/Requests";
 import {getTemplate} from "../../utils/templates/getTemplate";
-import {toggleLoader} from "./authReducer";
 import {toClearImageArray} from "../../utils/toClearImageArray";
 
 const initialState={
     instruction: [],
+    instructionFetchLoader: false,
 }
 
 
 export const instructionReducer = (state=initialState,action)=>{
     switch (action.type) {
+        case INSTRUCTION_TOGGLE_FETCH_LOADER:
+            return{
+                ...state,
+                instructionFetchLoader: action.payload
+            }
         case WRITE_INSTRUCTION:
             return{
                 ...state,
@@ -31,11 +36,22 @@ export const instructionReducer = (state=initialState,action)=>{
     }
 }
 
+export const instructionToggleLoader = bool=>{
+    return{
+        type: 'INSTRUCTION_TOGGLE_FETCH_LOADER',
+        payload: bool
+    }
+}
 
-
+export const clearInstruction = ()=>{
+    return{
+        type: WRITE_INSTRUCTION,
+        action: []
+    }
+}
 
 export const getInstruction = ()=> {
-    return async dispatch => getTemplate(dispatch, instructionGetReq, WRITE_INSTRUCTION, toggleLoader)
+    return async dispatch => getTemplate(dispatch, instructionGetReq, WRITE_INSTRUCTION, instructionToggleLoader)
 }
 export const createInstruction = data=>{
 
@@ -45,9 +61,9 @@ export const createInstruction = data=>{
         console.log(pair[0]+ ', ' + pair[1]);
     }
     return async dispatch => {
-        dispatch(toggleLoader(true))
+        dispatch(instructionToggleLoader(true))
         await instructionPostReq(formData)
-        dispatch(toggleLoader(false))
+        dispatch(instructionToggleLoader(false))
     }
 }
 

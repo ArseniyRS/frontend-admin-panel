@@ -81,6 +81,7 @@ const Former = (props)=>{
                         <Form>
                             <div className={"createOrEditContainer__fields"}>
                                 {styledInputs(inputs())}
+
                             </div>
 
                             <div className={"createOrEditContainer__btns"}>

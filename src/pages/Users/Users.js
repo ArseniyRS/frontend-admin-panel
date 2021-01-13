@@ -10,7 +10,7 @@ import {getCities} from "../../redux/reducers/mainReducer";
 
 
 
-const UsersPage = ({users,cities,userById,createUser,getCities,clearUser,getUsers,getUserById,updateUser,deleteUser})=>{
+const UsersPage = ({userFetchLoader,users,cities,userById,createUser,getCities,clearUser,getUsers,getUserById,updateUser,deleteUser})=>{
     return(
         <PageRenderer
             pageUrl ={'users'}
@@ -38,13 +38,12 @@ const UsersPage = ({users,cities,userById,createUser,getCities,clearUser,getUser
                 email: "",
                 password: '',
                 repeatPassword: ''
-
             }}
             updaterInitialFormValues={{
                 avatarPath: userById?.avatarPath,
                 name: userById?.name,
                 surname: userById?.surname,
-                patronymic: userById?.patronymic,
+                patronymic:userById?.patronymic,
                 birthDate: userById?.birthDate,
                 gender: userById?.gender,
                 cityID: userById?.cityID,
@@ -60,6 +59,7 @@ const UsersPage = ({users,cities,userById,createUser,getCities,clearUser,getUser
              updateFunc={updateUser}
              deleteFunc={deleteUser}
             clearFunc={clearUser}
+            isLoading={userFetchLoader}
 
         />
     )
@@ -68,7 +68,8 @@ const mapStateToProps = state=>{
     return{
         users: state.user.users,
         userById: state.user.userById,
-        cities: state.main.cities
+        cities: state.main.cities,
+        userFetchLoader: state.user.userFetchLoader
     }
 }
 

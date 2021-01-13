@@ -15,7 +15,7 @@ import {LastActionsColumns} from "../../configs/Main/tableColumnsConfig";
 
 
 
-const MainPage = ({statistic,lastActions,getActions,username})=>{
+const MainPage = ({mainFetchLoader,statistic,lastActions,getActions,username})=>{
     return(
         <>
             <a href="http://46.101.99.48/"  target={'_blank'} className = 'page-content__open-site'>Открыть сайт</a>
@@ -28,7 +28,7 @@ const MainPage = ({statistic,lastActions,getActions,username})=>{
              </div>
             <span className='page-content__title' style={{marginBottom: '60px'}}>{'Последние действия'}</span>
                  <TableContainer
-                     //isLoading={isLoading}
+                     isLoading={mainFetchLoader}
                      getDataFunc={getActions}
                      data={lastActions[0]}
                      columns={LastActionsColumns}
@@ -42,7 +42,8 @@ const mapStateToProps = state=>{
     return{
         statistic: state.main.statistic,
         lastActions: state.main.lastActions,
-        username: state.auth.username
+        username: state.auth.username,
+        mainFetchLoader: state.main.mainFetchLoader
     }
 }
 

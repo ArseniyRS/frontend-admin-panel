@@ -2,40 +2,39 @@ import * as Yup from "yup";
 
 export const validationGenerator = (key, config)=>{
     let schema = {}
-    key.map((item,index)=> {
-        if(config[index]?.dataType) {
-            switch (config[index].dataType) {
-                case 'number':
-                    schema[item] = Yup.number();
-                    break;
-                case 'array':
-                    schema[item] = Yup.array();
-                    break;
-                case 'obj':
-                    schema[item] = Yup.object();
-                    break;
-                default:
-                    schema[item] = Yup.string()
+    for (let i=0;i<key.length;i++){
+        for (let j=0;j<config.length;j++){
+            if(key[i]===config[j]?.key){
+                schema[key[i]]  =chooseSchema(config[j])
             }
         }
-            else{
-                schema[item] = Yup.string()
-            }
-
-
-
-        if(config[index]?.required){
-            schema[item] =  schema[item].required(config[index].required)
-        }
-        if(config[index]?.min){
-            schema[item] =  schema[item].min(config[index].min)
-        }
-        if(config[index]?.max){
-            schema[item] =  schema[item].min(config[index].max)
-        }
-        if(config[index]?.nullable){
-            schema[item] =  schema[item].nullable(config[index].nullable)
-        }
-    })
+    }
     return schema
+}
+
+const chooseSchema = (config)=>{
+    let pattern
+    if(config?.dataType) {
+        switch (config.dataType) {
+            case 'number': pattern = Yup.number();
+                break;
+            case 'array': pattern = Yup.array();
+                break;
+            case 'obj': pattern = Yup.object();
+                break;
+            default: pattern = Yup.string()
+        }
+    }
+    else{ pattern = Yup.string()
+    }
+
+    if(config?.required){ pattern =  pattern.required(config.required)
+    }
+    if(config?.min){ pattern =   pattern.min(config.min)
+    }
+    if(config?.max){ pattern =  pattern.min(config.max)
+    }
+    if(config?.nullable){ pattern =  pattern.nullable(config.nullable)
+    }
+    return pattern
 }

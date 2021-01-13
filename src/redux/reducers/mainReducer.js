@@ -1,25 +1,28 @@
 import {
-    WRITE_STATISTIC, WRITE_LAST_ACTIONS, WRITE_CITIES,
+    WRITE_STATISTIC, WRITE_LAST_ACTIONS, WRITE_CITIES,  MAIN_TOGGLE_FETCH_LOADER,
 } from './types'
 import {
     lastActionsGetReq,
     statisticGetReq,citiesGetReq
 } from "../../utils/Requests";
 import {getTemplate} from "../../utils/templates/getTemplate";
-import {createOrChangeTemplate} from "../../utils/templates/createOrChangeTemplate";
-import {deleteTemplate} from "../../utils/templates/deleteTemplate";
-import {toggleLoader} from "./authReducer";
-import {updateItemInStore} from "../../utils/templates/updateItemInStore";
+
 
 const initialState={
     statistic: {},
     lastActions: [],
-    cities: []
+    cities: [],
+    mainFetchLoader: false
 }
 
 
 export const mainReducer = (state=initialState,action)=>{
     switch (action.type) {
+        case MAIN_TOGGLE_FETCH_LOADER:
+            return{
+                ...state,
+                mainFetchLoader: action.payload
+            }
         case WRITE_CITIES:
             return{
                 ...state,
@@ -46,17 +49,22 @@ export const mainReducer = (state=initialState,action)=>{
         }
     }
 }
-
+export const mainToggleLoader = bool=>{
+    return{
+        type: 'MAIN_TOGGLE_FETCH_LOADER',
+        payload: bool
+    }
+}
 
 export const getCities = ()=> {
-    return async dispatch => getTemplate(dispatch, citiesGetReq, WRITE_CITIES, toggleLoader)
+    return async dispatch => getTemplate(dispatch, citiesGetReq, WRITE_CITIES, mainToggleLoader)
 }
 export const getStatistic = ()=> {
-    return async dispatch => getTemplate(dispatch, statisticGetReq, WRITE_STATISTIC, toggleLoader)
+    return async dispatch => getTemplate(dispatch, statisticGetReq, WRITE_STATISTIC, mainToggleLoader)
 }
 
 export const getActions = ()=> {
-    return async dispatch => getTemplate(dispatch, lastActionsGetReq, WRITE_LAST_ACTIONS, toggleLoader)
+    return async dispatch => getTemplate(dispatch, lastActionsGetReq, WRITE_LAST_ACTIONS, mainToggleLoader)
 }
 
 

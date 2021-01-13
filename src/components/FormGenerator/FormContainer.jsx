@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {withRouter} from "react-router-dom";
 import Former from "./Former";
 import './Form.css'
+import Preloader from "../Preloader/Preloader";
 const FormContainer = ({
                            createReq,
                            updReq,
@@ -32,7 +33,7 @@ const FormContainer = ({
 
 
     return(
-       (!isLoading && props.valueById && match.params?.id) || !match.params?.id
+       !isLoading
            ?
             <Former handleSubmit={handleSubmit}  {...props}/>
            : <Preloader />

@@ -4,7 +4,7 @@ import {
     ADDED_CATEGORY,
     DELETED_CATEGORY,
     UPDATED_CATEGORY,
-    WRITE_SUBCATEGORIES
+    WRITE_SUBCATEGORIES, USER_TOGGLE_FETCH_LOADER, CATEGORY_TOGGLE_FETCH_LOADER
 } from './types'
 import {
     categoryDelReq,
@@ -17,19 +17,23 @@ import {
 import {getTemplate} from "../../utils/templates/getTemplate";
 import {createOrChangeTemplate} from "../../utils/templates/createOrChangeTemplate";
 import {deleteTemplate} from "../../utils/templates/deleteTemplate";
-import {toggleLoader} from "./authReducer";
 import {updateItemInStore} from "../../utils/templates/updateItemInStore";
-//import {toClearImageArray} from "../../utils/templates/toClearImageArray";
 
 const initialState={
     categories: [],
     categoryById: {},
-    subcategories: []
+    subcategories: [],
+    categoryFetchLoader: false
 }
 
 
 export const categoryReducer = (state=initialState,action)=>{
     switch (action.type) {
+        case CATEGORY_TOGGLE_FETCH_LOADER:
+            return{
+                ...state,
+                categoryFetchLoader: action.payload
+            }
         case WRITE_CATEGORIES:
             return{
                 ...state,
@@ -69,31 +73,36 @@ export const categoryReducer = (state=initialState,action)=>{
         }
     }
 }
-
+export const categoryToggleLoader = bool=>{
+    return{
+        type: 'CATEGORY_TOGGLE_FETCH_LOADER',
+        payload: bool
+    }
+}
 
 export const clearCategory = ()=>{
     return{
         type: WRITE_CATEGORY_BY_ID,
-        action: undefined
+        action: {}
     }
 }
 export const getSubCategories = ()=>{
-    return async dispatch =>getTemplate(dispatch,subcategoryGetReq,WRITE_SUBCATEGORIES,toggleLoader)
+    return async dispatch =>getTemplate(dispatch,subcategoryGetReq,WRITE_SUBCATEGORIES,categoryToggleLoader)
 }
 export const getCategory = ()=> {
-    return async dispatch => getTemplate(dispatch, categoryGetReq, WRITE_CATEGORIES, toggleLoader)
+    return async dispatch => getTemplate(dispatch, categoryGetReq, WRITE_CATEGORIES, categoryToggleLoader)
 }
 export const getCategoryById = (id)=> {
-    return async dispatch => getTemplate(dispatch, categoryGetByIdReq, WRITE_CATEGORY_BY_ID, toggleLoader,id)
+    return async dispatch => getTemplate(dispatch, categoryGetByIdReq, WRITE_CATEGORY_BY_ID, categoryToggleLoader,id)
 }
 export const createCategory = data=>{
 
-        return async dispatch => createOrChangeTemplate(dispatch,categoryPostReq,data,ADDED_CATEGORY,toggleLoader)
+        return async dispatch => createOrChangeTemplate(dispatch,categoryPostReq,data,ADDED_CATEGORY,categoryToggleLoader)
 }
 export const deleteCategory = id =>{
-    return async dispatch =>  deleteTemplate(dispatch,categoryDelReq,id,toggleLoader,DELETED_CATEGORY)
+    return async dispatch =>  deleteTemplate(dispatch,categoryDelReq,id,categoryToggleLoader,DELETED_CATEGORY)
 }
 export const updateCategory = (id,data) =>{
-    return async dispatch => createOrChangeTemplate(dispatch,categoryUpdReq,data,UPDATED_CATEGORY,toggleLoader,id)
+    return async dispatch => createOrChangeTemplate(dispatch,categoryUpdReq,data,UPDATED_CATEGORY,categoryToggleLoader,id)
 }
 

@@ -3,7 +3,7 @@ import {
     WRITE_SPECIALIST_BY_ID,
     ADDED_SPECIALIST,
     DELETED_SPECIALIST,
-    UPDATED_SPECIALIST,
+    UPDATED_SPECIALIST, SPECIALIST_TOGGLE_FETCH_LOADER,
 } from './types'
 import {
     specialistDelReq,
@@ -15,20 +15,23 @@ import {
 import {getTemplate} from "../../utils/templates/getTemplate";
 import {createOrChangeTemplate} from "../../utils/templates/createOrChangeTemplate";
 import {deleteTemplate} from "../../utils/templates/deleteTemplate";
-import {toggleLoader} from "./authReducer";
 import {updateItemInStore} from "../../utils/templates/updateItemInStore";
 import {toClearImageArray} from "../../utils/toClearImageArray";
-import {base64Image} from "../../utils/templates/toClearImageArray";
-//import {toClearImageArray} from "../../utils/templates/toClearImageArray";
 
 const initialState={
     specialists: [],
-    specialistById: {}
+    specialistById: {},
+    specialistFetchLoader: false
 }
 
 
 export const specialistReducer = (state=initialState,action)=>{
     switch (action.type) {
+        case SPECIALIST_TOGGLE_FETCH_LOADER:
+            return{
+                ...state,
+                specialistFetchLoader: action.payload
+            }
         case WRITE_SPECIALISTS:
             return{
                 ...state,
@@ -63,14 +66,24 @@ export const specialistReducer = (state=initialState,action)=>{
         }
     }
 }
-
-
+export const specialistToggleLoader = bool=>{
+    return{
+        type: 'SPECIALIST_TOGGLE_FETCH_LOADER',
+        payload: bool
+    }
+}
+export const clearSpecialist = ()=>{
+    return{
+        type: WRITE_SPECIALIST_BY_ID,
+        action: {}
+    }
+}
 
 export const getSpecialists = ()=> {
-    return async dispatch => getTemplate(dispatch, specialistGetReq, WRITE_SPECIALISTS, toggleLoader)
+    return async dispatch => getTemplate(dispatch, specialistGetReq, WRITE_SPECIALISTS, specialistToggleLoader)
 }
 export const getSpecialistById = (id)=> {
-    return async dispatch => getTemplate(dispatch,specialistGetByIdReq, WRITE_SPECIALIST_BY_ID, toggleLoader,id)
+    return async dispatch => getTemplate(dispatch,specialistGetByIdReq, WRITE_SPECIALIST_BY_ID, specialistToggleLoader,id)
 }
 export const createSpecialist = data=>{
     let formData = new FormData()
@@ -102,17 +115,17 @@ export const createSpecialist = data=>{
         console.log(pair[0]+ ', ' + pair[1]);
     }
     return async dispatch => {
-        dispatch(toggleLoader(true))
+        dispatch(specialistToggleLoader(true))
         await specialistPostReq(formData)
-        dispatch(toggleLoader(false))
+        dispatch(specialistToggleLoader(false))
     }
 
 }
 export const deleteSpecialist = id =>{
-    return async dispatch =>  deleteTemplate(dispatch,specialistDelReq,id,toggleLoader,DELETED_SPECIALIST)
+    return async dispatch =>  deleteTemplate(dispatch,specialistDelReq,id,specialistToggleLoader,DELETED_SPECIALIST)
 }
 export const updateSpecialist = (id,data) =>{
-    return async dispatch => createOrChangeTemplate(dispatch,specialistUpdReq,data,UPDATED_SPECIALIST,toggleLoader,id)
+    return async dispatch => createOrChangeTemplate(dispatch,specialistUpdReq,data,UPDATED_SPECIALIST,specialistToggleLoader,id)
 }
 
 

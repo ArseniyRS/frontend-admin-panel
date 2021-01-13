@@ -10,6 +10,7 @@ import AddBtn from "../Btns/AddBtn";
 import {avatarPNG} from "../../assets";
 import DeleteBtn from "../Btns/DeleteBtn";
 import SearchContainer from "../SearchGenerator/SearchContainer";
+import {imageRouter} from "../../utils/imageRouter";
 
 
 
@@ -57,7 +58,7 @@ const PageRenderer = ({
     return(
         <>
             <a href="http://46.101.99.48/"  target={'_blank'} className = 'page-content__open-site'>Открыть сайт</a>
-            <div className = 'page-content__profile'><span>{username.name}</span> <img  alt=""/></div>
+            <div className = 'page-content__profile'><span>{username.name}</span> <img src={imageRouter(username.avatarPath)} alt=""/></div>
             {title &&<span className='page-content__title'>{pageTitle}</span>}
             <Switch>
                         <Route exact path={`/${pageUrl}`}>
@@ -127,7 +128,6 @@ const PageRenderer = ({
 
 const mapStateToProps = state=>{
     return{
-        isLoading : state.auth.isFetchLoader,
         username: state.auth.username
     }
 }

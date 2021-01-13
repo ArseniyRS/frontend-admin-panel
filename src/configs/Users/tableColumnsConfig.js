@@ -37,7 +37,7 @@ export const UserColumns  =[
             if(value==='Admin'){
                 return <span style={{color: '#FFFFFF',background: '#FF6C5F',borderRadius: '5px',padding: '3px 6px'}}>Админ</span>
             }
-            return 'value'
+            return value
         }
     },
     {

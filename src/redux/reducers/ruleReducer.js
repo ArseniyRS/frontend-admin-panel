@@ -3,7 +3,7 @@ import {
     WRITE_RULE_BY_ID,
     ADDED_RULE,
     DELETED_RULE,
-    UPDATED_RULE,
+    UPDATED_RULE, WRITE_QAS_BY_ID, QAS_TOGGLE_FETCH_LOADER, RULE_TOGGLE_FETCH_LOADER,
 } from './types'
 import {
     ruleDelReq,
@@ -21,11 +21,17 @@ import {updateItemInStore} from "../../utils/templates/updateItemInStore";
 const initialState={
     rules: [],
     ruleById: {},
+    ruleFetchLoader: false
 }
 
 
 export const ruleReducer = (state=initialState,action)=>{
     switch (action.type) {
+        case RULE_TOGGLE_FETCH_LOADER:
+            return{
+                ...state,
+                ruleFetchLoader: action.payload
+            }
         case WRITE_RULE:
             return{
                 ...state,
@@ -62,28 +68,35 @@ export const ruleReducer = (state=initialState,action)=>{
     }
 }
 
+export const ruleToggleLoader = bool=>{
+    return{
+        type: 'RULE_TOGGLE_FETCH_LOADER',
+        payload: bool
+    }
+}
+
 
 export const clearRule = ()=>{
     return{
         type: WRITE_RULE_BY_ID,
-        action: undefined
+        action: {}
     }
 }
 
 export const getRule = ()=> {
-    return async dispatch => getTemplate(dispatch, ruleGetReq, WRITE_RULE, toggleLoader)
+    return async dispatch => getTemplate(dispatch, ruleGetReq, WRITE_RULE, ruleToggleLoader)
 }
 export const getRuleById = (id)=> {
-    return async dispatch => getTemplate(dispatch, ruleGetByIdReq, WRITE_RULE_BY_ID, toggleLoader,id)
+    return async dispatch => getTemplate(dispatch, ruleGetByIdReq, WRITE_RULE_BY_ID, ruleToggleLoader,id)
 }
 export const createRule = data=>{
 
-    return async dispatch => createOrChangeTemplate(dispatch,rulePostReq,data,ADDED_RULE,toggleLoader)
+    return async dispatch => createOrChangeTemplate(dispatch,rulePostReq,data,ADDED_RULE,ruleToggleLoader)
 }
 export const deleteRule = id =>{
-    return async dispatch =>  deleteTemplate(dispatch,ruleDelReq,id,toggleLoader,DELETED_RULE)
+    return async dispatch =>  deleteTemplate(dispatch,ruleDelReq,id,ruleToggleLoader,DELETED_RULE)
 }
 export const updateRule = (id,data) =>{
-    return async dispatch => createOrChangeTemplate(dispatch,ruleUpdReq,data,UPDATED_RULE,toggleLoader,id)
+    return async dispatch => createOrChangeTemplate(dispatch,ruleUpdReq,data,UPDATED_RULE,ruleToggleLoader,id)
 }
 
