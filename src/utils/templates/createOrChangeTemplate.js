@@ -13,6 +13,7 @@ export const createOrChangeTemplate = async (
     await func(data,id).then(resp=>{
        const copyData =  resp.data
         copyData["key"] = copyData.id
+        delete copyData.id
         dispatch({type:actionType,payload:copyData})
     }).catch(err=>console.log(err.response))
     dispatch(toggleLoader)
