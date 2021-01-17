@@ -41,7 +41,6 @@ const ScheduleField = props=>{
         }
         return setData(newData)
     }
-    console.log(data)
     const elements= data.map((item,index)=><ScheduleItem key={index}
                                       id={index}
                                       data={item}

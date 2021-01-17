@@ -52,7 +52,9 @@ function App(props) {
                   </div>
               </>
               :
+              <Switch>
               <Route path={'/'} component={AuthPage}/>
+              </Switch>
 
   );
 }

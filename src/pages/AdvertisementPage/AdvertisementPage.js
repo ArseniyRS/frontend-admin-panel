@@ -23,7 +23,6 @@ import {getCities} from "../../redux/reducers/mainReducer";
 
 
 const AdvertisementPage = ({specialistFetchLoader,subcategories,cities,clearSpecialist,getCities,getSubCategories,specialists,specialistById,getSpecialistById,getSpecialists,createSpecialist,updateSpecialist,deleteSpecialist})=>{
-    console.log(specialistById)
     return(
         <PageRenderer
             pageUrl ={'advertisements'}

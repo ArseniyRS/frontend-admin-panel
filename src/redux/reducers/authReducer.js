@@ -90,7 +90,6 @@ export const writeProfile = id=>{
         dispatch(authToggleLoader(true))
        await userGetByIdReq(id).then((resp)=>{
            dispatch(writeUsername(resp))
-            console.log(resp)
         })
         dispatch(authToggleLoader(false))
     }
@@ -118,7 +117,6 @@ export const authSignIn = data =>{
     return async dispatch =>{
         dispatch(authToggleLoader(true))
         await authReq(data).then(response=>{
-            console.log(response)
             //if(response.status.ok){
                 localStorage.setItem("token", response.data.token)
                 localStorage.setItem("id", response.data.id)
