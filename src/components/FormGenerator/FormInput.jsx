@@ -53,7 +53,12 @@ const FormInput = ({
                     </FieldArray>
 
             : type === 'radio' ?
-                    <RadioGroup name={name} label={radioLabel}/>
+                    <Field name={name} >
+                        {({field:{name,value},form: { setFieldValue}}) =><RadioGroup setFieldValue={setFieldValue}
+                                                                                     value={value}
+                                                                                     name={name}
+                                                                                     label={radioLabel}/>}
+                    </Field>
                     : type==='textarea' ?
                         <Field name={name} as={'textarea'} placeholder={placeholder} />
                 : type==='selector' ?

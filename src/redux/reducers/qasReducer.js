@@ -96,6 +96,6 @@ export const deleteQas = id =>{
     return async dispatch =>  deleteTemplate(dispatch,qasDelReq,id,qasToggleLoader,DELETED_QAS)
 }
 export const updateQas = (id,data) =>{
-    return async dispatch => createOrChangeTemplate(dispatch,qasUpdReq,data,UPDATED_QAS,toggleLoader,id)
+    return async dispatch => createOrChangeTemplate(dispatch,qasUpdReq,data,UPDATED_QAS,qasToggleLoader,id)
 }
 

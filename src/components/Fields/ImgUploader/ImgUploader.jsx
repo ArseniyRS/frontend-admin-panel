@@ -7,17 +7,14 @@ import {imageRouter} from "../../../utils/imageRouter";
 
 const ImgUploader = ({setFieldValue,name,value,placeholder,imageCount=1,fileTypes=['jpg', 'gif', 'png','svg']})=>{
 
-    const [file,setFile] = useState([]
-        // ()=>{
-        // if(value instanceof String){
-        //     return  [value]
-        // }else{
-        //     return value
-        // }}
-    )
+
+
+
+
+    const [file,setFile] = useState([])
+
     useEffect(()=>{
             setFieldValue(name, file)
-
     },[file])
 
 
@@ -58,7 +55,7 @@ const ImgUploader = ({setFieldValue,name,value,placeholder,imageCount=1,fileType
                                 <div className={'upload__image-container'}>
 
                                     <div className="upload__image-item">
-                                        <img src={file[0]?.data_url && value? file[0].data_url : imageRouter(value)} alt=""/>
+                                        <img src={file[0]?.data_url} alt=""/>
                                     </div>
                                     <span className="update__image-item" onClick={() => onImageUpdate(0)}>Изменить фото профиля</span>
                                         <span className="update__image-item" onClick={() => onImageRemove(0)}>Удалить фото профиля</span>

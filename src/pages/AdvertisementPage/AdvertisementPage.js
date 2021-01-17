@@ -23,7 +23,7 @@ import {getCities} from "../../redux/reducers/mainReducer";
 
 
 const AdvertisementPage = ({specialistFetchLoader,subcategories,cities,clearSpecialist,getCities,getSubCategories,specialists,specialistById,getSpecialistById,getSpecialists,createSpecialist,updateSpecialist,deleteSpecialist})=>{
-
+    console.log(specialistById)
     return(
         <PageRenderer
             pageUrl ={'advertisements'}
@@ -52,7 +52,7 @@ const AdvertisementPage = ({specialistFetchLoader,subcategories,cities,clearSpec
                 url: "",
                 viezd: 0,
                 street:{},
-                phone: [],
+                phone: '',
                 email: "",
                 webSite: "",
                 whatsApp: "",
@@ -67,26 +67,30 @@ const AdvertisementPage = ({specialistFetchLoader,subcategories,cities,clearSpec
             }}
             updaterInitialFormValues={{
                 type: specialistById?.type,
-                avatarPath: specialistById?.avatarPath,
+                avatar: specialistById?.type,
                 name: specialistById?.name,
-                category: [],
+                category: specialistById?.type,
                 subcategory: specialistById?.subcategoryID,
-                url: specialistById?.url,
                 cityID: specialistById?.cityID,
-                viezd: '',
-                street:specialistById?.street,
-                addressComment: specialistById?.addressComment,
-                phone: [],
-                email: "",
-                webSite: "",
-                whatsApp: "",
-                telegram: "",
-                instagram: "",
-                facebook: '',
-               // modes: [],
-                description: '',
-                photos: [],
+                url: specialistById?.url,
+                viezd: specialistById?.viezd,
+                street: {
+                    street: specialistById?.street,
+                    addressComment: specialistById?.addressComment,
+                    latitude: specialistById?.latitude,
+                    longitude:specialistById?.longitude},
+                phone: specialistById?.links?.phone,
+                email: specialistById?.links?.email,
+                webSite: specialistById?.links?.webSite,
+                whatsApp: specialistById?.links?.whatsApp,
+                instagram: specialistById?.links?.instagram,
+                telegram: specialistById?.links?.telegram,
+                facebook: specialistById?.links?.facebook,
+                modes: specialistById?.modes,
+                description: specialistById?.description,
+                photosForm: specialistById?.photos,
                 services: specialistById?.services,
+               
 
             }}
              getDataFunc={getSpecialists}

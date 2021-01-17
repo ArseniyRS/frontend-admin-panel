@@ -50,7 +50,7 @@ export const specialistGetReq = ()=>instance.get('/Admin/Companies',tokenGetter(
 export const specialistGetByIdReq = (id)=>instance.get(`/Admin/Companies/${id}`,tokenGetter()).then(response=>response.data)
 export const specialistPostReq = (data)=>instance.post('/Personalpage/Companies',
         data,
-      {headers: { "Authorization" : `Bearer ${localStorage.getItem('token')}`,'content-type': 'multipart/form-data' }})
+      {headers: { "Authorization" : `Bearer ${localStorage.getItem('token')}` }})
         .then( resp=>{
         console.log(resp)
     }).catch(err=>console.log(err.response))

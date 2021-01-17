@@ -20,14 +20,13 @@ const ScheduleField = props=>{
         }
         return resultData
     }
-    const [data,setData] = useState(props.value.length ? props.value : createInitialData())
+    const [data,setData] = useState(props.value?.length ? props.value : createInitialData())
     useEffect(()=>{
         props.setFieldValue(props.name,data)
     },[data])
     const changeDataHandler = (id,changedData)=>{
         let newData=[]
         const index = data.findIndex((el) => el.day === id);
-        console.log(data)
         if(changedData.checked) {
             if(index!==-1) {
                 newData = [...data.slice(0, index), changedData, ...data.slice(index + 1)];
@@ -42,23 +41,16 @@ const ScheduleField = props=>{
         }
         return setData(newData)
     }
-
-    const elements=()=> {
-        let result = []
-        for (let i = 0; i < 7; i++) {
-
-            result.push(<ScheduleItem key={i}
-                                      id={i}
-                                      dayName={daysArray[i]}
+    console.log(data)
+    const elements= data.map((item,index)=><ScheduleItem key={index}
+                                      id={index}
+                                      data={item}
+                                      dayName={daysArray[item.day]}
                                       changeDataHandler={changeDataHandler}
-
             />)
-        }
-        return result
-    }
     return(
         <div>
-            {elements()}
+            {elements}
         </div>
 
     )

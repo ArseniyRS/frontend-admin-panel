@@ -9,7 +9,7 @@ const RadioGroup = props=>{
     const elements = props.label.map((item,index)=>{
         return(
             <div className={'radio_group_field'}>
-                <Field type="radio" name={props.name} value={`${index}`} />
+                <input type="radio" name={props.name} value={index} checked={props.value === index} onChange={()=>props.setFieldValue(props.name,index)} />
             <label key={index} htmlFor={props.name}> {props.label[index]}</label>
             </div>
         )

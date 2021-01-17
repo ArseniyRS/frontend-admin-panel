@@ -22,20 +22,6 @@ export const sideBarConfig = [
 
     },
     {
-        to: '/feedback',
-        name: 'Обратная связь',
-    },
-    {
-        to: '/comments',
-        name: 'Отзывы',
-
-    },
-    {
-        to: '/complaints',
-        name: 'Жалобы',
-
-    },
-    {
         to: '/about',
         name: 'О компании',
 

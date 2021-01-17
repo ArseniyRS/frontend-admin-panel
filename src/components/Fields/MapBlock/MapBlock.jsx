@@ -6,25 +6,29 @@ import './MapBlock.css'
 
 
 const MapBlock = props=> {
+
     const [center, setCenter] = useState(props.value?.longitude && props.value?.latitude ? [props.value.longitude, props.value.latitude]: [42.8746, 74.5698])
     const ymaps = React.useRef(null);
     const placemarkRef = React.useRef(null);
     const mapRef = React.useRef(null);
-    const [address, setAddress] = React.useState(props.value?.street? props.value : '');
-    const [addressComment, setAddressComment] = React.useState(props.value?.addressComment? props.addressComment : '');
+    const [address, setAddress] = React.useState(props.value?.street ? props.value.street : '');
+    const [addressComment, setAddressComment] = React.useState(props.value?.addressComment? props.value.addressComment : '');
+
     const createPlacemark = (coords) => {
 
-        return new ymaps.current.Placemark(
-            coords,
-            {
-                iconCaption: "Секунду..."
-            },
-            {
-                preset: "islands#violetDotIconWithCaption",
-                draggable: false
-            }
-        );
+            return new ymaps.current.Placemark(
+                coords,
+                {
+                    iconCaption: "Секунду..."
+                },
+                {
+                    preset: "islands#violetDotIconWithCaption",
+                    draggable: false
+                }
+            );
+
     };
+
     useEffect(()=>{
         props.setFieldValue(props.name,{
             street: address,
@@ -64,7 +68,7 @@ const MapBlock = props=> {
             <label htmlFor="addressComment" className={'addressComment-label'}>Комментарии к адресу</label>
             <div className={'mapField__InputBlock'}>
                     <input type="text" name={props.name} value={address} readOnly/>
-                    <input type="text" name={'addressComment'} onChange={(e)=>setAddressComment(e.target.value)} value={addressComment} placeholder={'Введите уточнение (5 этаж...)'}/>
+                    <input type="text" name={'addressComment'}  onChange={(e)=>setAddressComment(e.target.value)} value={addressComment} placeholder={'Введите уточнение (5 этаж...)'}/>
             </div>
 
             <YMaps enterprise query={{apikey: "1a9e7380-7d7d-47a9-bdb3-eb90e115a1a3"}}>

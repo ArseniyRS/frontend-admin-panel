@@ -87,36 +87,39 @@ export const getSpecialistById = (id)=> {
 }
 export const createSpecialist = data=>{
     let formData = new FormData()
-    formData.append('name', data.name)
-    formData.append('subcategoryID', data.subcategory)
-    toClearImageArray(data.photosForm).map(item=>{
-        formData.append('photosForm', item);
-    })
-    formData.append('avatar', toClearImageArray(data.avatar));
-    formData.append('description', data.description)
-    formData.append('street', data.street.street)
-    formData.append('addressComment', data.street.addressComment)
-    formData.append('cityID', data.cityID)
-    formData.append('latitude', data.street.latitude)
-    formData.append('longitude', data.street.longitude)
-    formData.append('url', data.url)
-    formData.append('modes', data.modes)
-    formData.append('type', data.type)
-    formData.append('viezd', data.viezd)
-    formData.append('links.webSite', data.webSite)
-    formData.append('links.whatsApp', data.whatsApp)
-    formData.append('links.telegram', data.telegram)
-    formData.append('links.instagram', data.instagram)
-    formData.append('links.facebook', data.facebook)
-    formData.append('links.email', data.email)
-    formData.append('modes', JSON.stringify(data.modes))
-    formData.append('services', JSON.stringify(data.services))
-    for (let pair of formData.entries()) {
-        console.log(pair[0]+ ', ' + pair[1]);
-    }
+    // toClearImageArray(data.photosForm).map(item=>{
+    //     formData.append('photosForm', item);
+    // })
+    // formData.append('avatar', toClearImageArray(data.avatar));
+   const newData = {
+       subcategoryID: data.subcategory,
+       type:data.type,
+       viezd: data.viezd,
+       name: data.name,
+       description: data.description,
+       street: data.street.street,
+       addressComment: data.street.addressComment,
+       cityID:  data.cityID,
+       latitude: data.street.latitude,
+       longitude: data.street.longitude,
+       url: data.email,
+       links: {
+           phone: data.phone,
+           webSite: data.webSite,
+           whatsApp: data.whatsApp,
+           facebook: data.facebook,
+           telegram: data.telegram,
+           instagram: data.instagram,
+           email: data.email
+       },
+       services:data.services,
+       ///modes: data.modes
+   }
     return async dispatch => {
         dispatch(specialistToggleLoader(true))
-        await specialistPostReq(formData)
+        await specialistPostReq(newData).then(response=>{
+            console.log(response)
+        })
         dispatch(specialistToggleLoader(false))
     }
 

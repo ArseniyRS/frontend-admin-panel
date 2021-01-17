@@ -6,7 +6,7 @@ const FieldWithIcon = props=>{
     return(
         <span className={'fieldWithIcon'}>
             <img src={props.iconInput} alt=""/>
-            <input type="text" name={props.name} placeholder={props.placeholder} onChange={(e)=>props.setFieldValue(props.name,e.target.value)}/>
+            <input type="text" name={props.name} placeholder={props.placeholder} value={props.value} onChange={(e)=>props.setFieldValue(props.name,e.target.value)}/>
         </span>
     )
 }

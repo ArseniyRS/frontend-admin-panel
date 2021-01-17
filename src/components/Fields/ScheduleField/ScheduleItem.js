@@ -3,19 +3,19 @@ import {Field} from "formik";
 
 
 
-const ScheduleItem = ({id,dayName,changeDataHandler})=>{
-    const [checked,setChecked] = useState(false)
-    const [fromHour,setFromHour] = useState('')
-    const [fromMinute,setFromMinute] = useState('')
-    const [toHour,setToHour] = useState('')
-    const [toMinute,setToMinute] = useState('')
+const ScheduleItem = ({id,dayName,changeDataHandler,data})=>{
+    const [checked,setChecked] = useState(!data?.checked && false)
+    const [fromHour,setFromHour] = useState(!data?.fromHour && '')
+    const [fromMinute,setFromMinute] = useState(!data?.fromMinute && '')
+    const [toHour,setToHour] = useState(!data?.toHour && '')
+    const [toMinute,setToMinute] = useState(!data?.toMinute && '')
     useEffect(()=>{
 
             changeDataHandler(id, {
-                fromHour: fromHour,
-                fromMinute: fromMinute,
-                toHour: toHour,
-                toMinute: toMinute,
+                fromHour: !parseInt(fromHour) && 0,
+                fromMinute: !parseInt(fromMinute) && 0,
+                toHour: !parseInt(toHour) && 0,
+                toMinute: !parseInt(toMinute) && 0,
                 day: id,
                 checked: checked
             })

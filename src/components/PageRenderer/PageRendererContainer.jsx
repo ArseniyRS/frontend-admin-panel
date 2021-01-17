@@ -100,6 +100,7 @@ const PageRenderer = ({
                                 initialVals={creatorInitialFormValues}
                                 fileUploadKeys={fileUploadKeys}
                                 isLoading={isLoading}
+                                clearFunc = {clearFunc}
                             />
                         </Route>
                         }

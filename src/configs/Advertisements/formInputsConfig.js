@@ -23,26 +23,20 @@ export const advertisementInputConfig = [
         placeholder: "Введите имя",
        // required: "Впишите имя пользователя",
         key: 'name',
-        fieldStyles: {width: '380px'}
-    },
-    {
-        label: "Категории",
-        placeholder: "Выберите категорию",
-        //required: "Выберите категорию",
-        type: 'selector',
-        selectorProperty: 'category',
-        dataType: 'array',
+        fieldStyles: {width: '380px'},
         parentBlock : 'open',
-        key: 'category'
     },
+
     {
         label: "Подкатегория",
         placeholder: "Выберите подкатегорию",
         //required: "Выберите подкатегорию",
         type: 'selector',
         selectorProperty: 'subcategories',
+        key: 'subcategory',
+        fieldStyles: {width: '380px'},
         parentBlock : 'close',
-        key: 'subcategory'
+
     },
     {
         label: "Город",
@@ -78,9 +72,8 @@ export const advertisementInputConfig = [
     {
         label: "Телефон",
         placeholder: "Телефон пользователя",
-        type: 'array',
-        dataType: 'array',
         key: 'phone',
+        fieldStyles: {width: '380px'}
 
     },
     {
