@@ -2,43 +2,42 @@
 
 export const sideBarConfig = [
     {
-        to: '/main',
+        to: '/admin/main',
         name: 'Главная',
 
     },
     {
-        to: '/advertisements',
+        to: '/admin/advertisements',
         name: 'Существующие объявления',
 
     },
     {
-        to: '/users',
+        to: '/admin/users',
         name: 'Пользователи',
-
     },
     {
-        to: '/categories',
+        to: '/admin/categories',
         name: 'Категории',
 
     },
     {
-        to: '/about',
+        to: '/admin/about',
         name: 'О компании',
 
     },
     {
-        to: '/qas',
+        to: '/admin/qas',
         name: 'Вопрос ответ',
 
     },
     {
-        to: '/rules',
+        to: '/admin/rules',
         name: 'Правила',
 
     },
 
     {
-        to: '/instruction',
+        to: '/admin/instruction',
         name: 'Инструкции',
     },
 

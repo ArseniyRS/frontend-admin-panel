@@ -19,7 +19,7 @@ import {ruleColumns} from "../../configs/Rules/tableColumnsConfig";
 const RulesPage = ({ruleFetchLoader,rules=[],ruleById,getRule,getRuleById,createRule,updateRule,deleteRule})=>{
     return(
         <PageRenderer
-            pageUrl ={'rules'}
+            pageUrl ={'admin/rules'}
             pageTitle ={'Правила'}
 
             tableData={rules}

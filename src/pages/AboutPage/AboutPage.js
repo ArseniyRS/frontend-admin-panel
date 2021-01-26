@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {connect} from "react-redux";
 
 import PageRenderer from "../../components/PageRenderer/PageRendererContainer";
@@ -14,14 +14,10 @@ import {aboutColumns} from "../../configs/About/tableColumnsConfig";
 import {aboutInputConfig} from "../../configs/About/formInputsConfig";
 
 
-
-
-
-
 const AboutPage = ({aboutFetchLoader,about=[],aboutById,getAbout,getAboutById,createAbout,updateAbout,deleteAbout,clearAbout})=>{
     return(
         <PageRenderer
-            pageUrl ={'about'}
+            pageUrl ={'admin/about'}
             pageTitle ={'О компании'}
 
             tableData={about}

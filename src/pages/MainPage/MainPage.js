@@ -11,6 +11,7 @@ import {getActions, getStatistic} from "../../redux/reducers/mainReducer";
 import './MainPage.css'
 import TableContainer from "../../components/Table/TableContainer";
 import {LastActionsColumns} from "../../configs/Main/tableColumnsConfig";
+import {imageRouter} from "../../utils/imageRouter";
 
 
 
@@ -18,8 +19,8 @@ import {LastActionsColumns} from "../../configs/Main/tableColumnsConfig";
 const MainPage = ({mainFetchLoader,statistic,lastActions,getActions,username})=>{
     return(
         <>
-            <a href="http://46.101.99.48/"  target={'_blank'} className = 'page-content__open-site'>Открыть сайт</a>
-            <div className = 'page-content__profile'><span>{username.name}</span> <img  alt=""/></div>
+            <a href="https://naidi.kg"  target={'_blank'} className = 'page-content__open-site'>Открыть сайт</a>
+            <div className = 'page-content__profile'><span>{username.name}</span> <img src={imageRouter(username.avatarPath)} alt=""/></div>
             <span className='page-content__title'>{'Главная'}</span>
              <div className={'statistic-wrapper'}>
             <StatisticBlock img={userStatSVG} title={'Пользователи'} data={statistic.user_count}  />

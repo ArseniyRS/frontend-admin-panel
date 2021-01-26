@@ -3,19 +3,17 @@ import {
     UPDATED_USER,
     WRITE_USER_BY_ID,
     WRITE_USERS,
-    ADDED_USER, AUTH_TOGGLE_FETCH_LOADER, USER_TOGGLE_FETCH_LOADER,
+    ADDED_USER,  USER_TOGGLE_FETCH_LOADER,
 } from './types'
 import {
-    adminPostReq, specialistPostReq,
+    adminPostReq,
     superadminPostReq,
     userDelByIdReq,
     userGetByIdReq, userPostReq, usersGetReq, userUpdReq,
 } from "../../utils/Requests";
 import {getTemplate} from "../../utils/templates/getTemplate";
 import {deleteTemplate} from "../../utils/templates/deleteTemplate";
-import {toggleLoader} from "./authReducer";
 import {updateItemInStore} from "../../utils/templates/updateItemInStore";
-import {createOrChangeTemplate} from "../../utils/templates/createOrChangeTemplate";
 import {toClearImageArray} from "../../utils/toClearImageArray";
 
 const initialState={

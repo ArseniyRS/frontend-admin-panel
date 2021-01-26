@@ -70,7 +70,6 @@ textarea::placeholder{
   margin-right: 13px;
 }
 .page-content__profile img{
-  border: 1.5px solid #FFC822;
   width: 40px;
   height: 40px;
   border-radius: 50%;

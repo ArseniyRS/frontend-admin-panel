@@ -13,7 +13,7 @@ import {getCities} from "../../redux/reducers/mainReducer";
 const UsersPage = ({userFetchLoader,users,cities,userById,createUser,getCities,clearUser,getUsers,getUserById,updateUser,deleteUser})=>{
     return(
         <PageRenderer
-            pageUrl ={'users'}
+            pageUrl ={'admin/users'}
             pageTitle ={'Пользователи'}
             tableData={users}
             tableColumnsConfig={UserColumns}

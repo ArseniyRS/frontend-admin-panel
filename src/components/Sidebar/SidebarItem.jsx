@@ -16,15 +16,13 @@ const SidebarItem = ({to,name,
             return setClick(true)
         }
         return setClick(false)
-
-
     },[history.location.pathname])
     const classes = classNames({
         'sidebar__item' : !clicked,
         'sidebar__item_active' : clicked
     })
     return(
-        <li className={classes} ><Link onClick={()=>setClick(true)} to={to} >{name}</Link></li>
+        <li className={classes}><Link onClick={()=>setClick(true)} to={to}>{name}</Link></li>
     )
 }
 

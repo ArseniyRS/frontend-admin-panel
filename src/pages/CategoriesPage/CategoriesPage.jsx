@@ -19,7 +19,7 @@ import {
 const CategoriesPage = ({categoryFetchLoader,categories=[],categoryById,getCategory,getCategoryById,createCategory,updateCategory,deleteCategory,clearCategory})=>{
     return(
         <PageRenderer
-            pageUrl ={'categories'}
+            pageUrl ={'admin/categories'}
             pageTitle ={'Категории'}
 
             tableData={categories}

@@ -54,10 +54,9 @@ const PageRenderer = ({
 
     username
                       })=>{
-    //const clickOnRecord=(id)=>history.push(`/${pageUrl}/view/${id}`)
     return(
         <>
-            <a href="http://46.101.99.48/"  target={'_blank'} className = 'page-content__open-site'>Открыть сайт</a>
+            <a href="https://naidi.kg"  target={'_blank'} className = 'page-content__open-site'>Открыть сайт</a>
             <div className = 'page-content__profile'><span>{username.name}</span> <img src={imageRouter(username.avatarPath)} alt=""/></div>
             {title &&<span className='page-content__title'>{pageTitle}</span>}
             <Switch>

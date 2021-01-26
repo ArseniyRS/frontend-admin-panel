@@ -7,14 +7,13 @@ import {
     WRITE_USERNAME
 } from './types'
 import {authReq, userGetByIdReq} from "../../utils/Requests";
-import {getUserById} from "./userReducer";
 
 
 const initialState={
     authFetchLoader: false,
     isAuthorized: false,
     isPageLoader: false,
-    authErrorMessage: undefined,
+    authErrorMessage: '',
     username: {}
 }
 
@@ -117,22 +116,14 @@ export const authSignIn = data =>{
     return async dispatch =>{
         dispatch(authToggleLoader(true))
         await authReq(data).then(response=>{
-            //if(response.status.ok){
+            if(response.status===200){
                 localStorage.setItem("token", response.data.token)
                 localStorage.setItem("id", response.data.id)
                 dispatch(authToggleLoader(true))
-           // }else {
-            //    dispatch(writeAuthMessage('Неверно введены данные.'))
-           // }
-            //     await userGetByIdReq(response.result.body.id).then(response=>{
-            //         console.log(response)
-            //         dispatch(writeUsername(response.result.phoneNumber))
-            //     })
-            //
-            //     setTimeout(()=>dispatch(togglePageLoader(false)),4000)
-           // }
-                //
-        })
+                dispatch(toggleAuth(true))
+                dispatch(writeProfile(response.data.id))
+           }
+        }).catch(()=>dispatch(writeAuthMessage('Неверно введены данные.')))
         dispatch(authToggleLoader(false))
     }
 }

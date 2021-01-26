@@ -13,16 +13,14 @@ const SidebarList  = (props)=>{
                 key={index}
                 id={index}
                 to={item.to}
-
                 name={item.name}
-
             />
         )
     })
     return(
         <div className='sidebar__container'>
             <div className="sidebar__logo-container">
-            <Link to={'/'}><img  className='sidebar__logo' src={logoSVG} alt=""/></Link>
+            <Link to={'/admin/main'}><img  className='sidebar__logo' src={logoSVG} alt=""/></Link>
             </div>
             <ul className='sidebar'>
                 {elements}

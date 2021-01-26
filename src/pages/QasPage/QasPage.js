@@ -20,7 +20,7 @@ import {QasColumns} from "../../configs/Qas/tableColumnsConfig";
 const QasPage = ({qasFetchLoader,qas=[],qasById,getQas,getQasById,createQas,updateQas,deleteQas,clearQas})=>{
     return(
         <PageRenderer
-            pageUrl ={'qas'}
+            pageUrl ={'admin/qas'}
             pageTitle ={'Вопрос-ответ'}
 
             tableData={qas}

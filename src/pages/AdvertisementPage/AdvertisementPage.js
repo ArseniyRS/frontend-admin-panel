@@ -25,7 +25,7 @@ import {getCities} from "../../redux/reducers/mainReducer";
 const AdvertisementPage = ({specialistFetchLoader,subcategories,cities,clearSpecialist,getCities,getSubCategories,specialists,specialistById,getSpecialistById,getSpecialists,createSpecialist,updateSpecialist,deleteSpecialist})=>{
     return(
         <PageRenderer
-            pageUrl ={'advertisements'}
+            pageUrl ={'admin/advertisements'}
             pageTitle ={'Существующие объявления'}
 
             tableData={specialists}

@@ -5,11 +5,7 @@ import PageRenderer from "../../components/PageRenderer/PageRendererContainer";
 import {advertisementInputConfig} from "../../configs/Advertisements/formInputsConfig";
 import {AdvertisementColumns} from "../../configs/Advertisements/tableColumnsConfig";
 import {
-    createCategory,
-    deleteCategory,
-    getCategory,
-    getCategoryById, getSubCategories,
-    updateCategory
+   getSubCategories,
 } from "../../redux/reducers/categoryReducer";
 import {
     createSpecialist,
@@ -27,7 +23,7 @@ const FeedbackPage = ({subcategories,cities,getCities,getSubCategories,specialis
 
     return(
         <PageRenderer
-            pageUrl ={'advertisements'}
+            pageUrl ={'admin/feedback'}
             pageTitle ={'Существующие объявления'}
 
             tableData={specialists}
