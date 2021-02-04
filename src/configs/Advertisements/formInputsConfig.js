@@ -10,7 +10,7 @@ export const advertisementInputConfig = [
 
     },
     {
-        placeholder: "Добавление фото",
+        placeholder: "Добавить фото пользователя",
         // required: "Впишите имя пользователя",
         //additionally: 'Личные данные'
         type: 'image',

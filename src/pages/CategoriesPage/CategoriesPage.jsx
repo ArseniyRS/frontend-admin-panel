@@ -17,6 +17,7 @@ import {
 
 
 const CategoriesPage = ({categoryFetchLoader,categories=[],categoryById,getCategory,getCategoryById,createCategory,updateCategory,deleteCategory,clearCategory})=>{
+    console.log(categoryById)
     return(
         <PageRenderer
             pageUrl ={'admin/categories'}
@@ -32,10 +33,15 @@ const CategoriesPage = ({categoryFetchLoader,categories=[],categoryById,getCateg
            formInputsConfig={categoryInputConfig}
             creatorInitialFormValues={{
                 name: '',
-                subcategories: []}}
+                subcategories: [],
+                popular: false,
+                avatar: []
+            }}
             updaterInitialFormValues={{
                 name: categoryById?.name,
                 subcategories: categoryById?.subcategories,
+                popular: categoryById?.popular,
+                avatar: categoryById?.avatar
             }}
             getDataFunc={getCategory}
             valueById={categoryById}

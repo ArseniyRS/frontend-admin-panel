@@ -2,21 +2,25 @@ import React, {useEffect, useState} from 'react'
 import './FileInput.css'
 
 const FileInput = props=>{
-const [file,setFile] = useState(props.value ? props.value : [])
+const [file,setFile] = useState( [])
     const [typeError,setTypeError] = useState(false)
+    console.log(props.value)
     const loadHandler = (f)=>{
     if(f[0].type === "application/pdf"){
-      return  setFile(f)
+      return  setFile(f[0])
     }
     return setTypeError(true)
     }
     useEffect(()=>{
-       props.setFieldValue(props.name,file)
+        setFile(props.value)
+    },[])
+    useEffect(()=>{
+       props.setFieldValue(props.name,[file])
     },[file])
     return(
         <div >
             <label className="custom-file-upload" onClick={()=>setTypeError(false)}>
-                {file[0]?.name ? file[0].name : props.placeholder}
+                {file?.name ? file.name : props.placeholder}
                 <input type="file" name={props.name}  onChange={(e)=>loadHandler(e.target.files)} />
                 <div className={'custom-file-btn'}>Выбрать</div>
             </label>

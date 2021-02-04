@@ -51,7 +51,14 @@ const FormInput = ({
                             objectTemplateStyles={objectTemplateStyles}
                         />}
                     </FieldArray>
-
+                : type === 'check' ?
+                    <Field name={name}>
+                        {({field:{name,value},form: {setFieldValue}})=>{
+                            console.log(value)
+                    return (
+                        <input name={name} type='checkbox' value={value} onChange={()=>setFieldValue(name,!value)}/>
+                    )
+                    }}</Field>
             : type === 'radio' ?
                     <Field name={name} >
                         {({field:{name,value},form: { setFieldValue}}) =><RadioGroup setFieldValue={setFieldValue}

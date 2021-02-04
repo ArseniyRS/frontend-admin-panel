@@ -48,7 +48,7 @@ const ImgUploader = ({setFieldValue,name,value,placeholder,imageCount=1,fileType
                                     onClick={onImageUpload}
                                     {...dragProps}
                                 >
-                                    Добавить фото пользователя
+                                    {placeholder}
                                 </div>
                                 }
                                 {file.length!==0 &&

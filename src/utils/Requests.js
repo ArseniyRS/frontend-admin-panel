@@ -2,8 +2,8 @@ import * as axios from 'axios'
 const tokenGetter = ()=>{ return { headers: {"Authorization" : `Bearer ${localStorage.getItem('token')}`} }}
 console.log(tokenGetter())
 const instance = axios.create({
-    //baseURL: 'http://46.101.99.48:8000/api/',
-    baseURL: 'https://naidi.kg/api/',
+    baseURL: 'http://46.101.99.48:8000/api/',
+    //baseURL: 'https://naidi.kg/api/',
     //headers: {"Authorization" : `Bearer ${localStorage.getItem('accessToken')}`}
 })
 export const authReq = (data)=>instance.post('/User/SignIn',data)

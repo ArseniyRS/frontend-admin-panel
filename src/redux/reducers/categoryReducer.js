@@ -18,6 +18,7 @@ import {getTemplate} from "../../utils/templates/getTemplate";
 import {createOrChangeTemplate} from "../../utils/templates/createOrChangeTemplate";
 import {deleteTemplate} from "../../utils/templates/deleteTemplate";
 import {updateItemInStore} from "../../utils/templates/updateItemInStore";
+import {toClearImageArray} from "../../utils/toClearImageArray";
 
 const initialState={
     categories: [],
@@ -96,13 +97,39 @@ export const getCategoryById = (id)=> {
     return async dispatch => getTemplate(dispatch, categoryGetByIdReq, WRITE_CATEGORY_BY_ID, categoryToggleLoader,id)
 }
 export const createCategory = data=>{
-
-        return async dispatch => createOrChangeTemplate(dispatch,categoryPostReq,data,ADDED_CATEGORY,categoryToggleLoader)
+    const fd = new FormData()
+    fd.append('avatar', toClearImageArray(data.avatar));
+    fd.append('name', data.name);
+    fd.append('popular', data.popular);
+    data.subcategories.map(item=>fd.append('subcategories',item.name))
+        return async dispatch => {
+            dispatch(categoryToggleLoader(true))
+            await categoryPostReq(fd).then(resp=>{
+                const copyData =  resp.data
+                copyData["key"] = copyData.id
+                delete copyData.id
+                dispatch({type:ADDED_CATEGORY,payload:copyData})
+            })
+            dispatch(categoryToggleLoader(false))
+        }
 }
 export const deleteCategory = id =>{
     return async dispatch =>  deleteTemplate(dispatch,categoryDelReq,id,categoryToggleLoader,DELETED_CATEGORY)
 }
 export const updateCategory = (id,data) =>{
-    return async dispatch => createOrChangeTemplate(dispatch,categoryUpdReq,data,UPDATED_CATEGORY,categoryToggleLoader,id)
-}
+        const fd = new FormData()
+        fd.append('avatar', toClearImageArray(data.avatar));
+        fd.append('name', data.name);
+        fd.append('popular', data.popular);
+        data.subcategories.map(item => fd.append('subcategories', item.name))
+        return async dispatch => {
+            dispatch(categoryToggleLoader(true))
+            await categoryUpdReq(fd, id).then(resp => {
+                const copyData = resp.data
+                copyData["key"] = copyData.id
+                delete copyData.id
+                dispatch({type: UPDATED_CATEGORY, payload: copyData})
+            })
+            dispatch(categoryToggleLoader(false))
 
+    }}
